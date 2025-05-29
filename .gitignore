@@ -1,1 +1,7 @@
-node_modules\n.next\nout\n.cache\n.DS_Store
+# .gitignore
+node_modules
+.next
+out
+out/cache
+.cache
+.DS_Store
