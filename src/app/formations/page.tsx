@@ -8,7 +8,7 @@ import { BrochureButton } from '@/components/BrochureButton';
 import {
   Users, CheckCircle, Target, Clock, Award,
   BookOpen, Zap, BarChart3, Calendar,
-  Star, ArrowRight, Phone, Mail
+  Star, ArrowRight, Phone, Mail, X
 } from 'lucide-react';
 
 export default function FormationsPage() {
@@ -118,7 +118,7 @@ export default function FormationsPage() {
           <AnimatedSection direction="up" delay={0.4}>
             <div className="card-base p-8 max-w-5xl mx-auto custom-shadow">
               <div className="flex items-start space-x-6">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-custom-blue to-custom-rose rounded-full flex items-center justify-center">
                   <CheckCircle className="w-8 h-8 text-white" />
                 </div>
                 <div>
@@ -468,40 +468,44 @@ export default function FormationsPage() {
                     <tr className="comparison-header">
                       <th className="comparison-cell text-left font-bold font-gyst">Critères</th>
                       <th className="comparison-cell font-bold font-gyst">Prépa Réussite</th>
-                      <th className="comparison-cell font-bold font-gyst">Grandes prépas nationales</th>
-                      <th className="comparison-cell font-bold font-gyst">Préparations en ligne</th>
+                      <th className="comparison-cell font-bold font-gyst">Prépas locales à 14 000€</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="comparison-row">
-                      <td className="comparison-cell font-semibold font-roboto">Effectif par classe</td>
-                      <td className="comparison-cell text-green-600 font-semibold font-roboto">30 max</td>
-                      <td className="comparison-cell text-orange-600 font-roboto">100 à 200</td>
-                      <td className="comparison-cell text-red-600 font-roboto">Illimité</td>
+                      <td className="comparison-cell font-semibold font-roboto">Effectif par promo</td>
+                      <td className="comparison-cell text-custom-blue font-semibold font-roboto">30 élèves max (Nord & Sud)</td>
+                      <td className="comparison-cell text-custom-rose font-roboto">Souvent 100 à 150 élèves</td>
                     </tr>
                     <tr className="comparison-row bg-custom-background">
+                      <td className="comparison-cell font-semibold font-roboto">Encadrement</td>
+                      <td className="comparison-cell text-custom-blue font-semibold font-roboto">Proximité réelle avec l'équipe pédagogique</td>
+                      <td className="comparison-cell text-custom-rose font-roboto">Suivi impersonnel, élève noyé dans la masse</td>
+                    </tr>
+                    <tr className="comparison-row">
                       <td className="comparison-cell font-semibold font-roboto">Mode d'enseignement</td>
-                      <td className="comparison-cell text-green-600 font-semibold font-roboto">100% présentiel<br/><span className="text-s text-custom-gray font-roboto">Contact direct quotidien</span></td>
-                      <td className="comparison-cell text-orange-600 font-roboto">Mixte<br/><span className="text-s text-custom-gray font-roboto">Présentiel + en ligne</span></td>
-                      <td className="comparison-cell text-red-600 font-roboto">100% en ligne<br/><span className="text-s text-custom-gray font-roboto">Vidéos et QCM</span></td>
-                    </tr>
-                    <tr className="comparison-row">
-                      <td className="comparison-cell font-semibold font-roboto">Suivi individuel</td>
-                      <td className="comparison-cell text-green-600 font-semibold font-roboto">Personnalisé<br/><span className="text-s text-custom-gray font-roboto">Coach dédié + entretiens réguliers</span></td>
-                      <td className="comparison-cell text-orange-600 font-roboto">Ponctuel<br/><span className="text-s text-custom-gray font-roboto">Sur demande uniquement</span></td>
-                      <td className="comparison-cell text-red-600 font-roboto">Minimal<br/><span className="text-s text-custom-gray font-roboto">Forum et mails</span></td>
+                      <td className="comparison-cell text-custom-blue font-semibold font-roboto">100% présentiel en petit groupe</td>
+                      <td className="comparison-cell text-custom-rose font-roboto">Présentiel magistral, peu interactif</td>
                     </tr>
                     <tr className="comparison-row bg-custom-background">
-                      <td className="comparison-cell font-semibold font-roboto">Adaptation programme local</td>
-                      <td className="comparison-cell text-green-600 font-semibold font-roboto">100% adapté<br/><span className="text-s text-custom-gray font-roboto">Univ. Réunion</span></td>
-                      <td className="comparison-cell text-orange-600 font-roboto">Partiellement adapté</td>
-                      <td className="comparison-cell text-red-600 font-roboto">Programme générique</td>
+                      <td className="comparison-cell font-semibold font-roboto">Lien avec les familles</td>
+                      <td className="comparison-cell text-custom-blue font-semibold font-roboto">Bilans réguliers, vraie transparence</td>
+                      <td className="comparison-cell text-custom-rose font-roboto">Peu ou pas de communication pédagogique directe</td>
                     </tr>
                     <tr className="comparison-row">
-                      <td className="comparison-cell font-semibold font-roboto">Tarifs</td>
-                      <td className="comparison-cell text-green-600 font-semibold font-roboto">Modérés<br/><span className="text-s text-custom-gray font-roboto">Paiement échelonné possible</span></td>
-                      <td className="comparison-cell text-orange-600 font-roboto">Élevés<br/><span className="text-s text-custom-gray font-roboto">+30% en moyenne</span></td>
-                      <td className="comparison-cell text-orange-600 font-roboto">Accessibles<br/><span className="text-s text-custom-gray font-roboto">Mais prestations limitées</span></td>
+                      <td className="comparison-cell font-semibold font-roboto">Structure de l'année</td>
+                      <td className="comparison-cell text-custom-blue font-semibold font-roboto">Planning clair, équilibré pensé pour durer</td>
+                      <td className="comparison-cell text-custom-rose font-roboto">Rythme dense, parfois épuisant</td>
+                    </tr>
+                    <tr className="comparison-row bg-custom-background">
+                      <td className="comparison-cell font-semibold font-roboto">Souplesse pour le travail personnel</td>
+                      <td className="comparison-cell text-custom-blue font-semibold font-roboto">Organisation qui laisse du temps pour s'entraîner efficacement</td>
+                      <td className="comparison-cell text-custom-rose font-roboto">Emploi du temps surchargé, peu de place pour le travail personnel</td>
+                    </tr>
+                    <tr className="comparison-row">
+                      <td className="comparison-cell font-semibold font-roboto">Coût annuel</td>
+                      <td className="comparison-cell text-custom-blue font-semibold font-roboto">Accessible - jusqu'à 4 fois moins cher</td>
+                      <td className="comparison-cell text-custom-rose font-roboto">Environ 14 000€ l'année</td>
                     </tr>
                   </tbody>
                 </table>
@@ -513,17 +517,17 @@ export default function FormationsPage() {
             <AnimatedSection direction="left" delay={0.3}>
               <div className="card-base p-8 custom-shadow">
                 <div className="flex items-start space-x-6">
-                  <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-custom-blue to-custom-rose rounded-full flex items-center justify-center">
                     <CheckCircle className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-green-700 mb-4 text-xl font-gyst">Les points forts de Prépa Réussite</h4>
+                    <h4 className="font-bold text-custom-blue mb-4 text-xl font-gyst">Les points forts de Prépa Réussite</h4>
                     <ul className="space-y-3 text-custom-gray text-base font-roboto">
-                      <li><strong>Suivi régulier de qualité</strong>un accompagnement constant assuré par nos formateurs, pour suivre les progrès et garder le cap tout au long de l’année</li>
-                      <li><strong>Petits effectifs</strong>30 élèves maximum par promo pour garantir l’écoute, l’interaction et la disponibilité</li>
-                      <li><strong>Présentiel à 100 %</strong>tous les cours, TD et colles se font en direct, avec une vraie dynamique de groupe</li>
-                      <li><strong>Tarifs raisonnables</strong>des prix cohérents avec la réalité locale, sans compromis sur la qualité</li>
-                      <li><strong>Pédagogie structurée</strong>un programme clair, balisé, avec un rythme soutenu mais équilibré</li>
+                      <li><strong>Suivi régulier de qualité</strong> : un accompagnement constant assuré par nos formateurs, pour suivre les progrès et garder le cap tout au long de l'année</li>
+                      <li><strong>Petits effectifs</strong> : 30 élèves maximum par promo pour garantir l'écoute, l'interaction et la disponibilité</li>
+                      <li><strong>Présentiel à 100 %</strong> : tous les cours, TD et colles se font en direct, avec une vraie dynamique de groupe</li>
+                      <li><strong>Tarifs raisonnables</strong> : des prix cohérents avec la réalité locale, sans compromis sur la qualité</li>
+                      <li><strong>Pédagogie structurée</strong> : un programme clair, balisé, avec un rythme soutenu mais équilibré</li>
                     </ul>
                   </div>
                 </div>
@@ -531,19 +535,19 @@ export default function FormationsPage() {
             </AnimatedSection>
 
             <AnimatedSection direction="right" delay={0.3}>
-              <div className="card-base p-8 border-red-200 custom-shadow">
+              <div className="card-base p-8 custom-shadow">
                 <div className="flex items-start space-x-6">
-                  <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center">
-                    <ArrowRight className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-custom-rose to-orange-500 rounded-full flex items-center justify-center">
+                    <X className="w-8 h-4 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-red-700 mb-4 text-xl font-gyst">Ce que nous n'offrons pas</h4>
+                    <h4 className="font-bold text-custom-rose mb-4 text-xl font-gyst">Ce que nous n'offrons pas</h4>
                     <ul className="space-y-3 text-custom-gray text-base font-roboto">
-                      <li><strong>Pas de formule 100% en ligne</strong> : nous privilégions l’interaction humaine, pas les écrans</li>
+                      <li><strong>Pas de formule 100% en ligne</strong> : nous privilégions l'interaction humaine, pas les écrans</li>
                       <li><strong>Pas de promesses irréalistes</strong> : la réussite se construit avec méthode, pas avec des illusions</li>
-                      <li><strong>Pas de classes surchargées</strong> : nous refusons l’effet “usine” pour préserver l’efficacité de l’encadrement</li>
+                      <li><strong>Pas de classes surchargées</strong> : nous refusons l'effet "usine" pour préserver l'efficacité de l'encadrement</li>
                       <li><strong>Pas de frais cachés</strong> : tout est inclus, clair, sans surprise</li>
-                      <li><strong>Pas de modèle standardisé</strong> : notre équipe s’adapte aux besoins de la promo, avec réactivité et exigence</li>
+                      <li><strong>Pas de modèle standardisé</strong> : notre équipe s'adapte aux besoins de la promo, avec réactivité et exigence</li>
                     </ul>
                   </div>
                 </div>

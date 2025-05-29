@@ -261,7 +261,7 @@ export default function FAQPage() {
                       </p>
                       <div className="space-y-2 text-base">
                         <p><strong>Nord :</strong> +262 692 71 30 84</p>
-                        <p><strong>Sud :</strong> 0262 98 76 54</p>
+                        <p><strong>Sud :</strong> +262 692 71 30 84</p>
                       </div>
                     </div>
 

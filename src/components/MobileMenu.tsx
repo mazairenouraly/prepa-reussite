@@ -15,7 +15,7 @@ export const MobileMenu = ({ className = '' }: MobileMenuProps) => {
 
   const menuItems = [
     { label: 'Accueil', href: '/' },
-    { label: 'Nos Parcours', href: '/formations' },
+    { label: 'Nos Prépas', href: '/formations' },
     { label: 'Blog', href: '/blog' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Contact', href: '/contact' },
@@ -86,9 +86,22 @@ export const MobileMenu = ({ className = '' }: MobileMenuProps) => {
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b">
                 <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-prepa-blue rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-base">PR</span>
-                  </div>
+                  <div className="w-12 h-12 flex items-center justify-center">
+                  <img
+                    src="/logo.png"
+                    alt="Prépa Réussite Logo"
+                    width="48"
+                    height="48"
+                    className="object-contain rounded-full shadow-md"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent) {
+                        parent.innerHTML = '<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md"><span class="text-custom-blue font-bold text-lg font-gyst">PR</span></div>';
+                      }
+                    }}
+                  />
+                </div>
                   <div>
                     <h2 className="font-bold text-prepa-blue">Prépa Réussite</h2>
                     <p className="text-s text-prepa-gray">La prépa médecine de référence</p>

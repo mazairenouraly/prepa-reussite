@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section - Style Cours custom Page d'accueil */}
-      <section className="hero-gradient-home">
+      <section className="hero-gradient-home overflow-hidden">
         <div className="hero-content">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left">
@@ -49,13 +49,13 @@ export default function Home() {
                   </RendezVousButton>
                 </div>
 
-                <div className="flex items-center space-x-8 pt-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-8 space-y-2 sm:space-y-0 pt-4">
                   <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-5 h-5 text-custom-rose" />
+                    <CheckCircle className="w-5 h-5 text-custom-rose flex-shrink-0" />
                     <span className="text-base text-custom-gray font-roboto">96% de satisfaction</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Award className="w-5 h-5 text-custom-rose" />
+                    <Award className="w-5 h-5 text-custom-rose flex-shrink-0" />
                     <span className="text-base text-custom-gray font-roboto">Excellence depuis 2020</span>
                   </div>
                 </div>
@@ -101,31 +101,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Statistics Section - Style Cours custom */}
-      <section className="py-32 stats-section">
-        <div className="section-container stats-content">
-          <div className="grid md:grid-cols-3 gap-16 text-center">
+      {/* Statistics Section - Style Cours custom CORRIGÉ POUR MOBILE */}
+      <section className="py-16 md:py-32 relative overflow-hidden">
+        {/* Background avec gestion responsive */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1627556704290-2b1f5853ff78?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-custom-blue/90 to-blue-600/80" />
+        
+        <div className="section-container relative z-10">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-16 text-center max-w-6xl mx-auto">
             <AnimatedSection direction="up" delay={0.1}>
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 <AnimatedCounter endValue={30} className="stat-number-white" />
-                <div className="text-white font-semibold text-2xl font-roboto">élèves par promotion</div>
-                <p className="stat-description-white">Pour un suivi personnalisé de qualité</p>
+                <div className="text-white font-semibold text-xl md:text-2xl font-roboto">élèves par promotion</div>
+                <p className="stat-description-white text-sm md:text-base">Pour un suivi personnalisé de qualité</p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 <AnimatedCounter endValue={100} suffix="%" className="stat-number-white" />
-                <div className="text-white font-semibold text-2xl font-roboto">en présentiel</div>
-                <p className="stat-description-white">Parce que rien ne remplace l'interaction directe</p>
+                <div className="text-white font-semibold text-xl md:text-2xl font-roboto">en présentiel</div>
+                <p className="stat-description-white text-sm md:text-base">Parce que rien ne remplace l'interaction directe</p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.3}>
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 <AnimatedCounter endValue={2} className="stat-number-white" />
-                <div className="text-white font-semibold text-2xl font-roboto">campus</div>
-                <p className="stat-description-white">Nord (Sainte-Clotilde) et Sud (Saint-Pierre)</p>
+                <div className="text-white font-semibold text-xl md:text-2xl font-roboto">campus</div>
+                <p className="stat-description-white text-sm md:text-base">Nord (Sainte-Clotilde) et Sud (Saint-Pierre)</p>
               </div>
             </AnimatedSection>
           </div>
@@ -133,7 +142,7 @@ export default function Home() {
       </section>
 
       {/* Notre Vision Section - Style Cours custom */}
-      <section className="py-20 section-bg-light">
+      <section className="py-20 section-bg-light overflow-hidden">
         <div className="section-container text-center">
           <AnimatedSection direction="up">
             <div className="section-header">
@@ -147,8 +156,8 @@ export default function Home() {
           </AnimatedSection>
 
           <AnimatedSection direction="scale" delay={0.2}>
-            <div className="card-white p-8 mb-16 max-w-4xl mx-auto custom-shadow">
-              <blockquote className="text-2xl italic leading-relaxed font-roboto font-medium">
+            <div className="card-white p-6 md:p-8 mb-16 max-w-4xl mx-auto custom-shadow">
+              <blockquote className="text-xl md:text-2xl italic leading-relaxed font-roboto font-medium">
                 <span className="text-gradient-blue">
                   "Chaque étudiant réunionnais motivé mérite toutes les chances de réussir en médecine,
                   sans avoir à quitter son île ou se ruiner."
@@ -157,8 +166,8 @@ export default function Home() {
               <p className="text-custom-gray text-base mt-6 font-roboto">Notre conviction fondatrice</p>
               
               {/* NOUVEAU TEXTE AJOUTÉ */}
-              <div className="bg-gradient-to-r from-blue-50 to-rose-50 p-6 rounded-xl mt-8">
-                <p className="text-lg font-medium text-custom-dark leading-relaxed">
+              <div className="bg-gradient-to-r from-blue-50 to-rose-50 p-4 md:p-6 rounded-xl mt-8">
+                <p className="text-base md:text-lg font-medium text-custom-dark leading-relaxed">
                   Chez Prépa Réussite, nous avons créé une prépa à taille humaine, ancrée localement, 
                   exigeante mais bienveillante, pour accompagner ceux qui veulent s'engager dans les filières de santé.
                 </p>
@@ -170,31 +179,31 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <AnimatedSection direction="up" delay={0.1}>
               <div className="text-center">
-                <div className="text-5xl font-bold text-custom-blue mb-2 font-gyst">3500</div>
-                <div className="text-lg font-semibold font-roboto text-gradient-blue">étudiants accompagnés</div>
-                <div className="text-base text-custom-gray font-roboto">chaque année</div>
+                <div className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst">3500</div>
+                <div className="text-base md:text-lg font-semibold font-roboto text-gradient-blue">étudiants accompagnés</div>
+                <div className="text-sm md:text-base text-custom-gray font-roboto">chaque année</div>
               </div>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
               <div className="text-center">
-                <div className="text-5xl font-bold text-custom-blue mb-2 font-gyst">2</div>
-                <div className="text-lg font-semibold font-roboto text-gradient-blue">campus à La Réunion</div>
-                <div className="text-base text-custom-gray font-roboto">Nord et Sud</div>
+                <div className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst">2</div>
+                <div className="text-base md:text-lg font-semibold font-roboto text-gradient-blue">campus à La Réunion</div>
+                <div className="text-sm md:text-base text-custom-gray font-roboto">Nord et Sud</div>
               </div>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.3}>
               <div className="text-center">
-                <div className="text-5xl font-bold text-custom-blue mb-2 font-gyst">97%</div>
-                <div className="text-lg font-semibold font-roboto text-gradient-blue">de nos anciens étudiants</div>
-                <div className="text-base text-custom-gray font-roboto">nous recommandent</div>
+                <div className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst">97%</div>
+                <div className="text-base md:text-lg font-semibold font-roboto text-gradient-blue">de nos anciens étudiants</div>
+                <div className="text-sm md:text-base text-custom-gray font-roboto">nous recommandent</div>
               </div>
             </AnimatedSection>
           </div>
 
           {/* Values Grid - Style Cours custom */}
-          <div className="features-grid-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: Award,
@@ -235,10 +244,10 @@ export default function Home() {
 
           {/* NOUVEAU TEXTE AJOUTÉ APRÈS LES CARDS */}
           <AnimatedSection direction="up" delay={0.5}>
-            <div className="card-base p-8 mt-16 max-w-4xl mx-auto custom-shadow">
+            <div className="card-base p-6 md:p-8 mt-16 max-w-4xl mx-auto custom-shadow">
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-custom-dark mb-4 font-gyst">Notre Mission</h3>
-                <p className="text-xl leading-relaxed font-roboto">
+                <h3 className="text-xl md:text-2xl font-bold text-custom-dark mb-4 font-gyst">Notre Mission</h3>
+                <p className="text-lg md:text-xl leading-relaxed font-roboto">
                   <span className="text-gradient-blue font-semibold">
                     Derrière chaque inscription, il y a un rêve : devenir médecin, sage-femme, kiné, pharmacien ou dentiste.
                   </span>
@@ -254,7 +263,7 @@ export default function Home() {
       </section>
 
       {/* Parcours Section - Style Cours custom MODIFIÉ */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white overflow-hidden">
         <div className="section-container">
           <AnimatedSection direction="up">
             <div className="section-header">
@@ -269,16 +278,16 @@ export default function Home() {
             </div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
             {/* Prépa Terminale MODIFIÉE */}
             <AnimatedSection direction="left" delay={0.2}>
               <Card className="card-base custom-card-hover h-full custom-shadow-hover">
-                <CardContent className="p-8">
-                  <div className="flex items-center space-x-3 mb-6">
-                    <Badge className="badge-primary">Lycéens</Badge>
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-6">
+                    <Badge className="badge-primary w-fit">Lycéens</Badge>
                     <span className="text-base text-custom-gray font-roboto">Présentiel</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 font-gyst text-gradient-blue">Prépa Terminale</h3>
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 font-gyst text-gradient-blue">Prépa Terminale</h3>
                   <p className="text-lg text-custom-gray mb-6 font-roboto">Anticiper, structurer, réussir.</p>
 
                   <p className="text-base text-custom-gray mb-6 font-roboto">
@@ -288,26 +297,26 @@ export default function Home() {
                   <ul className="space-y-4 mb-8">
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-custom-rose mt-1 flex-shrink-0" />
-                      <span className="text-base text-custom-gray font-roboto">Comprendre les attentes de la PASS / LAS</span>
+                      <span className="text-sm md:text-base text-custom-gray font-roboto">Comprendre les attentes de la PASS / LAS</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-custom-rose mt-1 flex-shrink-0" />
-                      <span className="text-base text-custom-gray font-roboto">Acquérir une méthode de travail structurée et efficace</span>
+                      <span className="text-sm md:text-base text-custom-gray font-roboto">Acquérir une méthode de travail structurée et efficace</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-custom-rose mt-1 flex-shrink-0" />
-                      <span className="text-base text-custom-gray font-roboto">Prendre de l'avance sur les notions clés du programme</span>
+                      <span className="text-sm md:text-base text-custom-gray font-roboto">Prendre de l'avance sur les notions clés du programme</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-custom-rose mt-1 flex-shrink-0" />
-                      <span className="text-base text-custom-gray font-roboto">Développer rigueur, rythme et confiance</span>
+                      <span className="text-sm md:text-base text-custom-gray font-roboto">Développer rigueur, rythme et confiance</span>
                     </li>
                   </ul>
 
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-2">
-                      <Users className="w-5 h-5 text-custom-rose" />
-                      <span className="text-base text-custom-gray font-roboto font-semibold">30 places max – accompagnement individuel garanti</span>
+                      <Users className="w-5 h-5 text-custom-rose flex-shrink-0" />
+                      <span className="text-sm md:text-base text-custom-gray font-roboto font-semibold">30 places max – accompagnement individuel garanti</span>
                     </div>
                   </div>
 
@@ -321,12 +330,12 @@ export default function Home() {
             {/* Prépa PASS/LAS MODIFIÉE */}
             <AnimatedSection direction="right" delay={0.2}>
               <Card className="card-base custom-card-hover h-full custom-shadow-hover">
-                <CardContent className="p-8">
-                  <div className="flex items-center space-x-3 mb-6">
-                    <Badge className="badge-primary">Étudiants</Badge>
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-6">
+                    <Badge className="badge-primary w-fit">Étudiants</Badge>
                     <span className="text-base text-custom-gray font-roboto">Présentiel</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 font-gyst text-gradient-blue">Prépa PASS / LAS</h3>
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 font-gyst text-gradient-blue">Prépa PASS / LAS</h3>
                   <p className="text-lg text-custom-gray mb-6 font-roboto">Réussir l'année la plus décisive.</p>
 
                   <p className="text-base text-custom-gray mb-6 font-roboto">
@@ -336,26 +345,26 @@ export default function Home() {
                   <ul className="space-y-4 mb-8">
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-custom-rose mt-1 flex-shrink-0" />
-                      <span className="text-base text-custom-gray font-roboto">Cours en présentiel pour consolider les acquis de la fac</span>
+                      <span className="text-sm md:text-base text-custom-gray font-roboto">Cours en présentiel pour consolider les acquis de la fac</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-custom-rose mt-1 flex-shrink-0" />
-                      <span className="text-base text-custom-gray font-roboto">TD, colles, concours blancs et coaching mental</span>
+                      <span className="text-sm md:text-base text-custom-gray font-roboto">TD, colles, concours blancs et coaching mental</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-custom-rose mt-1 flex-shrink-0" />
-                      <span className="text-base text-custom-gray font-roboto">Suivi individualisé selon la filière (PASS ou LAS)</span>
+                      <span className="text-sm md:text-base text-custom-gray font-roboto">Suivi individualisé selon la filière (PASS ou LAS)</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-custom-rose mt-1 flex-shrink-0" />
-                      <span className="text-base text-custom-gray font-roboto">Accompagnement stratégique jusqu'aux épreuves</span>
+                      <span className="text-sm md:text-base text-custom-gray font-roboto">Accompagnement stratégique jusqu'aux épreuves</span>
                     </li>
                   </ul>
 
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-2">
-                      <Users className="w-5 h-5 text-custom-rose" />
-                      <span className="text-base text-custom-gray font-roboto font-semibold">30 places max – exigence & soutien jusqu'au bout</span>
+                      <Users className="w-5 h-5 text-custom-rose flex-shrink-0" />
+                      <span className="text-sm md:text-base text-custom-gray font-roboto font-semibold">30 places max – exigence & soutien jusqu'au bout</span>
                     </div>
                   </div>
 
@@ -370,12 +379,12 @@ export default function Home() {
           <AnimatedSection direction="up" delay={0.4}>
             <div className="text-center mt-16">
               <Link href="/formations">
-                <Button className="btn-secondary px-12 py-4 text-lg text-white">
+                <Button className="btn-secondary px-8 md:px-12 py-4 text-base md:text-lg text-white">
                   <Target className="w-5 h-5 mr-3" />
                   Découvrir tous nos parcours en détail
                 </Button>
               </Link>
-              <p className="text-custom-gray text-base mt-4 font-roboto">
+              <p className="text-custom-gray text-sm md:text-base mt-4 font-roboto">
                 Comparatif complet, témoignages et résultats détaillés
               </p>
             </div>
@@ -384,7 +393,7 @@ export default function Home() {
       </section>
 
       {/* NOUVELLE SECTION : La Méthodologie Prépa Réussite */}
-      <section className="py-20 section-bg-light">
+      <section className="py-20 section-bg-light overflow-hidden">
         <div className="section-container">
           <AnimatedSection direction="up">
             <div className="section-header">
@@ -397,7 +406,7 @@ export default function Home() {
             </div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-10">
             <AnimatedSection direction="up" delay={0.1}>
               <div className="feature-card card-base custom-card-hover h-full">
                 <div className="feature-icon">
@@ -441,7 +450,7 @@ export default function Home() {
       </section>
 
       {/* Centres Section - Style Cours custom */}
-      <section className="py-20 section-bg-blue-light">
+      <section className="py-20 section-bg-blue-light overflow-hidden">
         <div className="section-container">
           <AnimatedSection direction="up">
             <div className="section-header">
@@ -453,7 +462,7 @@ export default function Home() {
             </div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
             {/* Centre Nord */}
             <AnimatedSection direction="left" delay={0.2}>
               <div className="space-y-8">
@@ -461,49 +470,49 @@ export default function Home() {
                   <img
                     src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=300&fit=crop"
                     alt="Centre Nord - Sainte-Clotilde"
-                    className="w-full h-64 object-cover rounded-xl"
+                    className="w-full h-48 md:h-64 object-cover rounded-xl"
                   />
-                  <div className="absolute top-6 left-6">
+                  <div className="absolute top-4 md:top-6 left-4 md:left-6">
                     <Badge className="badge-blue">Centre Nord</Badge>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="font-bold text-2xl mb-3 font-gyst text-gradient-blue">Sainte-Clotilde</h3>
-                  <div className="flex items-center text-custom-gray text-base mb-6 font-roboto">
-                    <MapPin className="w-5 h-5 mr-3" />
-                    24 Rte Philibert Tsiranana, CS 61115 97495, La Réunion (CREPS REUNION)
+                  <h3 className="font-bold text-xl md:text-2xl mb-3 font-gyst text-gradient-blue">Sainte-Clotilde</h3>
+                  <div className="flex items-start md:items-center text-custom-gray text-sm md:text-base mb-6 font-roboto">
+                    <MapPin className="w-5 h-5 mr-3 flex-shrink-0 mt-1 md:mt-0" />
+                    <span>24 Rte Philibert Tsiranana, CS 61115 97495, La Réunion (CREPS REUNION)</span>
                   </div>
                 </div>
 
                 <Card className="card-white custom-shadow">
-                  <CardContent className="p-8 space-y-6">
+                  <CardContent className="p-6 md:p-8 space-y-6">
                     <h4 className="font-bold text-lg font-gyst text-gradient-blue">Centre de Sainte-Clotilde</h4>
 
                     <div className="space-y-4">
                       <div className="flex items-start space-x-4">
-                        <div className="w-3 h-3 bg-custom-blue rounded-full mt-2" />
+                        <div className="w-3 h-3 bg-custom-blue rounded-full mt-2 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-base font-roboto text-gradient-blue">Installations modernes</p>
-                          <p className="text-custom-gray text-base font-roboto">
+                          <p className="font-semibold text-sm md:text-base font-roboto text-gradient-blue">Installations modernes</p>
+                          <p className="text-custom-gray text-sm md:text-base font-roboto">
                             Locaux spacieux avec salles de classe équipées, espaces de travail collaboratif.
                           </p>
                         </div>
                       </div>
 
                       <div className="flex items-start space-x-4">
-                        <div className="w-3 h-3 bg-custom-blue rounded-full mt-2" />
+                        <div className="w-3 h-3 bg-custom-blue rounded-full mt-2 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-base font-roboto text-gradient-blue">Emplacement stratégique</p>
-                          <p className="text-custom-gray text-base font-roboto">
+                          <p className="font-semibold text-sm md:text-base font-roboto text-gradient-blue">Emplacement stratégique</p>
+                          <p className="text-custom-gray text-sm md:text-base font-roboto">
                             À 10 minutes de l'université, facilement accessible en transports en commun.
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center text-custom-blue text-base pt-4 font-roboto">
-                      <Phone className="w-5 h-5 mr-3" />
+                    <div className="flex items-center text-custom-blue text-sm md:text-base pt-4 font-roboto">
+                      <Phone className="w-5 h-5 mr-3 flex-shrink-0" />
                       +262 692 71 30 84 
                     </div>
                   </CardContent>
@@ -518,49 +527,49 @@ export default function Home() {
                   <img
                     src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=300&fit=crop"
                     alt="Centre Sud - Saint-Pierre"
-                    className="w-full h-64 object-cover rounded-xl"
+                    className="w-full h-48 md:h-64 object-cover rounded-xl"
                   />
-                  <div className="absolute top-6 left-6">
+                  <div className="absolute top-4 md:top-6 left-4 md:left-6">
                     <Badge className="badge-blue">Centre Sud</Badge>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="font-bold text-2xl mb-3 font-gyst text-gradient-blue">Saint-Pierre</h3>
-                  <div className="flex items-center text-custom-gray text-base mb-6 font-roboto">
-                    <MapPin className="w-5 h-5 mr-3" />
-                    149 C Rue Marius et Ary Leblond, Saint-Pierre 97410, La Réunion (Nova assurances)
+                  <h3 className="font-bold text-xl md:text-2xl mb-3 font-gyst text-gradient-blue">Saint-Pierre</h3>
+                  <div className="flex items-start md:items-center text-custom-gray text-sm md:text-base mb-6 font-roboto">
+                    <MapPin className="w-5 h-5 mr-3 flex-shrink-0 mt-1 md:mt-0" />
+                    <span>149 C Rue Marius et Ary Leblond, Saint-Pierre 97410, La Réunion (Nova assurances)</span>
                   </div>
                 </div>
 
                 <Card className="card-white custom-shadow">
-                  <CardContent className="p-8 space-y-6">
+                  <CardContent className="p-6 md:p-8 space-y-6">
                     <h4 className="font-bold text-lg font-gyst text-gradient-blue">Centre de Saint-Pierre</h4>
 
                     <div className="space-y-4">
                       <div className="flex items-start space-x-4">
-                        <div className="w-3 h-3 bg-custom-blue rounded-full mt-2" />
+                        <div className="w-3 h-3 bg-custom-blue rounded-full mt-2 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-base font-roboto text-gradient-blue">Espace de travail optimisé</p>
-                          <p className="text-custom-gray text-base font-roboto">
+                          <p className="font-semibold text-sm md:text-base font-roboto text-gradient-blue">Espace de travail optimisé</p>
+                          <p className="text-custom-gray text-sm md:text-base font-roboto">
                             Locaux récents et lumineux, avec amphithéâtre et salles de travail.
                           </p>
                         </div>
                       </div>
 
                       <div className="flex items-start space-x-4">
-                        <div className="w-3 h-3 bg-custom-blue rounded-full mt-2" />
+                        <div className="w-3 h-3 bg-custom-blue rounded-full mt-2 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-base font-roboto text-gradient-blue">Localisation idéale</p>
-                          <p className="text-custom-gray text-base font-roboto">
+                          <p className="font-semibold text-sm md:text-base font-roboto text-gradient-blue">Localisation idéale</p>
+                          <p className="text-custom-gray text-sm md:text-base font-roboto">
                             En centre-ville, proche des commerces et restaurants, facilement accessible.
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center text-custom-blue text-base pt-4 font-roboto">
-                      <Phone className="w-5 h-5 mr-3" />
+                    <div className="flex items-center text-custom-blue text-sm md:text-base pt-4 font-roboto">
+                      <Phone className="w-5 h-5 mr-3 flex-shrink-0" />
                       +262 692 71 30 84 
                     </div>
                   </CardContent>
@@ -573,28 +582,28 @@ export default function Home() {
       </section>
 
       {/* Contact Section - Style Cours custom */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white overflow-hidden">
         <div className="section-container">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Questions */}
             <AnimatedSection direction="left">
               <div className="space-y-8">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-custom-rose/10 rounded-full flex items-center justify-center">
-                    <span className="text-3xl">🤔</span>
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-custom-rose/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-2xl md:text-3xl">🤔</span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-3xl font-gyst text-gradient-blue">Des questions ?</h3>
+                    <h3 className="font-bold text-2xl md:text-3xl font-gyst text-gradient-blue">Des questions ?</h3>
                   </div>
                 </div>
 
-                <p className="text-custom-gray text-lg font-roboto leading-relaxed">
+                <p className="text-custom-gray text-base md:text-lg font-roboto leading-relaxed">
                   Consultez notre page de questions fréquentes pour trouver rapidement des réponses à vos interrogations
                   sur nos formations, nos méthodes et nos tarifs.
                 </p>
 
                 <Link href="/faq">
-                  <Button className="btn-primary text-white">
+                  <Button className="btn-primary text-white w-full sm:w-auto">
                     Voir toutes les FAQ →
                   </Button>
                 </Link>

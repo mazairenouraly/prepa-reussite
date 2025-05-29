@@ -10,7 +10,9 @@ export default function MentionsLegalesPage() {
         <div className="hero-content">
           <div className="text-center text-white">
             <AnimatedSection direction="up">
+              {/*
               <Scale className="w-16 h-16 mx-auto mb-6 text-prepa-gold" />
+              */}
               <h1 className="hero-title-pages mb-8">Mentions légales</h1>
               <p className="hero-subtitle-pages max-w-4xl mx-auto">
                 Informations légales concernant le site prepa-reussite.com

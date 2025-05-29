@@ -365,20 +365,22 @@
 
   /* Chatbot */
   .chatbot-container {
-    @apply fixed bottom-4 right-4 z-50;
-  }
-
-  .chatbot-trigger {
-    @apply w-14 h-14 bg-gradient-to-br from-custom-blue to-custom-rose rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all cursor-pointer;
+    @apply fixed bottom-4 right-4;
+    z-index: 9999 !important;
   }
 
   .chatbot-popup {
     @apply absolute bottom-16 right-0 bg-white rounded-lg shadow-xl border border-gray-200 p-4 flex flex-col;
-    width: 420px; /* Augmentation de la largeur */
-    height: 600px; /* Augmentation de la hauteur */
+    width: 420px;
+    height: 600px;
     max-height: 600px;
+    z-index: 9999 !important;
   }
 
+  .chatbot-trigger {
+    @apply w-14 h-14 bg-gradient-to-br from-custom-blue to-custom-rose rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all cursor-pointer;
+    z-index: 9999 !important;
+  }
   /* Mobile Menu */
   .mobile-menu-overlay {
     @apply fixed inset-0 bg-black/50 z-40;

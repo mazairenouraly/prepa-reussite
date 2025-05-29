@@ -10,7 +10,9 @@ export default function PolitiqueConfidentialitePage() {
         <div className="hero-content">
           <div className="text-center text-white">
             <AnimatedSection direction="up">
+              {/*
               <Shield className="w-16 h-16 mx-auto mb-6 text-prepa-gold" />
+              */}
               <h1 className="hero-title-pages mb-8">Politique de confidentialité</h1>
               <p className="hero-subtitle-pages max-w-4xl mx-auto">
                 Protection et utilisation de vos données personnelles
