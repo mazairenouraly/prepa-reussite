@@ -5,9 +5,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+type FAQItem = {
+  keywords: string[];
+  question: string;
+  answer: string;
+};
+
+type Message = {
+  id: number;
+  text: string;
+  sender: 'user' | 'bot';
+  time: string;
+};
+
 export const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
       text: "Bonjour ! Je suis l'assistant virtuel de Prépa Réussite. Comment puis-je vous aider aujourd'hui ?",
@@ -23,12 +36,6 @@ export const Chatbot = () => {
     "Différence PASS/LAS ?",
     "Taux de réussite ?"
   ];
-
-  type FAQItem = {
-    keywords: string[];
-    question: string;
-    answer: string;
-  };
 
   // Base de données FAQ
   const faqDatabase: FAQItem[] = [
@@ -115,25 +122,25 @@ export const Chatbot = () => {
     const message = userMessage.toLowerCase();
     
     // Recherche par correspondance de mots-clés
-    let bestMatch = null;
+    let bestMatch: FAQItem | null = null;
     let maxScore = 0;
 
-    faqDatabase.forEach(item => {
+    for (const item of faqDatabase) {
       let score = 0;
-      item.keywords.forEach(keyword => {
+      for (const keyword of item.keywords) {
         if (message.includes(keyword.toLowerCase())) {
           score += 1;
         }
-      });
+      }
       
       if (score > maxScore) {
         maxScore = score;
         bestMatch = item;
       }
-    });
+    }
 
     // Si on a trouvé une correspondance suffisante
-    if (maxScore >= 1 && bestMatch) {
+    if (bestMatch && maxScore >= 1) {
       return bestMatch.answer;
     }
 
@@ -157,7 +164,7 @@ export const Chatbot = () => {
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
 
-    const userMessage = {
+    const userMessage: Message = {
       id: messages.length + 1,
       text: inputValue,
       sender: 'user',
@@ -170,7 +177,7 @@ export const Chatbot = () => {
 
     // Réponse automatique basée sur la FAQ
     setTimeout(() => {
-      const botResponse = {
+      const botResponse: Message = {
         id: messages.length + 2,
         text: findBestAnswer(currentInput),
         sender: 'bot',
@@ -181,7 +188,7 @@ export const Chatbot = () => {
   };
 
   const handleQuickQuestion = (question: string) => {
-    const userMessage = {
+    const userMessage: Message = {
       id: messages.length + 1,
       text: question,
       sender: 'user',
@@ -192,7 +199,7 @@ export const Chatbot = () => {
 
     // Réponse automatique
     setTimeout(() => {
-      const botResponse = {
+      const botResponse: Message = {
         id: messages.length + 2,
         text: findBestAnswer(question),
         sender: 'bot',
