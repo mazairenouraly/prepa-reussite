@@ -1,0 +1,343 @@
+{/*
+import { Layout } from '@/components/layout/Layout';
+import { AnimatedSection } from '@/components/AnimatedSection';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  Users, Award, Target, Heart, CheckCircle,
+  BookOpen, Lightbulb, Shield, Star
+} from 'lucide-react';
+
+export default function AProposPage() {
+  return (
+    <Layout>
+      <section className="hero-gradient">
+        <div className="hero-content">
+          <div className="text-center text-white">
+            <AnimatedSection direction="up">
+              <h1 className="hero-title mb-6">Notre Vision</h1>
+              <p className="hero-subtitle max-w-3xl mx-auto">
+                Une prépa humaine, exigeante et à taille humaine pour accompagner
+                chaque étudiant réunionnais vers la réussite en santé.
+              </p>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Notre histoire</h2>
+              <p className="section-subtitle">
+                Née de la conviction que chaque étudiant réunionnais mérite sa chance
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection direction="up" delay={0.2}>
+              <div className="card-light p-8 mb-12">
+                <blockquote className="text-lg italic text-prepa-blue leading-relaxed text-center">
+                  "Chaque étudiant réunionnais motivé mérite toutes les chances de réussir en médecine,
+                  sans avoir à quitter son île ou se ruiner."
+                </blockquote>
+                <p className="text-prepa-gray text-base mt-4 text-center">Notre conviction fondatrice</p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.3}>
+              <div className="content-area space-y-6">
+                <p className="text-lg leading-relaxed">
+                  Prépa Réussite est née en 2018 de la volonté de créer une préparation aux études de santé
+                  <strong> adaptée au contexte réunionnais</strong>. Nos fondateurs, tous issus du milieu médical
+                  et pédagogique, ont constaté que les jeunes Réunionnais étaient souvent contraints de quitter
+                  leur île pour suivre une préparation de qualité.
+                </p>
+
+                <p className="leading-relaxed">
+                  Face à ce constat, nous avons développé une approche innovante : une prépa <strong>à taille humaine</strong>,
+                  ancrée localement, qui combine l'exigence des meilleures prépas nationales avec la proximité
+                  et la bienveillance nécessaires à l'épanouissement de nos étudiants.
+                </p>
+
+                <p className="leading-relaxed">
+                  Depuis notre création, <strong>plus de 300 étudiants</strong> nous ont fait confiance et
+                  <strong> 65% d'entre eux</strong> ont intégré avec succès une filière de santé, soit un taux
+                  trois fois supérieur à la moyenne nationale.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-prepa-light">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Nos valeurs</h2>
+              <p className="section-subtitle">
+                Les piliers qui guident notre action au quotidien
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <AnimatedSection direction="up" delay={0.1}>
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <Award className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="feature-title">Le mérite</h3>
+                <p className="feature-description">
+                  Reconnaître la valeur de l'effort et célébrer l'excellence de chacun.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.2}>
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="feature-title">L'effort</h3>
+                <p className="feature-description">
+                  Encourager la persévérance au quotidien pour bâtir une progression durable.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.3}>
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="feature-title">La régularité</h3>
+                <p className="feature-description">
+                  Instaurer des routines claires pour avancer sereinement, semaine après semaine.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.4}>
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="feature-title">La confiance</h3>
+                <p className="feature-description">
+                  Créer un climat bienveillant et structuré pour révéler le potentiel de chaque élève.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Notre équipe</h2>
+              <p className="section-subtitle">
+                Des professionnels expérimentés au service de votre réussite
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <AnimatedSection direction="up" delay={0.1}>
+              <Card className="card-base overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&h=200&fit=crop&crop=face"
+                  alt="Dr. Jean-Claude Hoarau"
+                  className="w-full h-48 object-cover"
+                />
+                <CardContent className="p-6">
+                  <h3 className="font-bold text-prepa-blue mb-2">Dr. Jean-Claude Hoarau</h3>
+                  <p className="text-prepa-gray text-base mb-4">Directeur pédagogique</p>
+                  <div className="space-y-2">
+                    <Badge variant="outline" className="text-s">Médecin généraliste</Badge>
+                    <Badge variant="outline" className="text-s">15 ans d'enseignement</Badge>
+                  </div>
+                  <p className="text-prepa-gray text-s mt-4">
+                    Ancien chef de clinique au CHU de La Réunion, spécialisé dans la pédagogie médicale.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.2}>
+              <Card className="card-base overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1594824313806-c7dfdc13f2bb?w=300&h=200&fit=crop&crop=face"
+                  alt="Dr. Marie Laurent"
+                  className="w-full h-48 object-cover"
+                />
+                <CardContent className="p-6">
+                  <h3 className="font-bold text-prepa-blue mb-2">Dr. Marie Laurent</h3>
+                  <p className="text-prepa-gray text-base mb-4">Responsable pédagogique PASS</p>
+                  <div className="space-y-2">
+                    <Badge variant="outline" className="text-s">Biologiste</Badge>
+                    <Badge variant="outline" className="text-s">12 ans d'expérience</Badge>
+                  </div>
+                  <p className="text-prepa-gray text-s mt-4">
+                    Docteure en biologie cellulaire, experte en méthodologie d'apprentissage.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.3}>
+              <Card className="card-base overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=300&h=200&fit=crop&crop=face"
+                  alt="Prof. Sophie Martin"
+                  className="w-full h-48 object-cover"
+                />
+                <CardContent className="p-6">
+                  <h3 className="font-bold text-prepa-blue mb-2">Prof. Sophie Martin</h3>
+                  <p className="text-prepa-gray text-base mb-4">Coordinatrice LAS</p>
+                  <div className="space-y-2">
+                    <Badge variant="outline" className="text-s">Pharmacienne</Badge>
+                    <Badge variant="outline" className="text-s">10 ans d'enseignement</Badge>
+                  </div>
+                  <p className="text-prepa-gray text-s mt-4">
+                    Docteure en pharmacie, spécialisée dans l'accompagnement des parcours diversifiés.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-prepa-light">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Nos engagements</h2>
+              <p className="section-subtitle">
+                Ce que nous garantissons à chaque étudiant
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <AnimatedSection direction="left" delay={0.2}>
+              <Card className="card-base h-full">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-prepa-blue mb-6">Qualité pédagogique</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <Lightbulb className="w-5 h-5 text-prepa-gold mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Méthodes innovantes</h4>
+                        <p className="text-prepa-gray text-base">Pédagogie basée sur les neurosciences</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Users className="w-5 h-5 text-prepa-gold mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Effectifs limités</h4>
+                        <p className="text-prepa-gray text-base">30 étudiants maximum par classe</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Star className="w-5 h-5 text-prepa-gold mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Enseignants experts</h4>
+                        <p className="text-prepa-gray text-base">Professionnels de santé expérimentés</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="right" delay={0.2}>
+              <Card className="card-base h-full">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-prepa-blue mb-6">Accompagnement humain</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <Heart className="w-5 h-5 text-prepa-gold mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Bienveillance</h4>
+                        <p className="text-prepa-gray text-base">Climat de confiance et d'encouragement</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Target className="w-5 h-5 text-prepa-gold mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Suivi personnalisé</h4>
+                        <p className="text-prepa-gray text-base">Coaching individuel régulier</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <BookOpen className="w-5 h-5 text-prepa-gold mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Orientation</h4>
+                        <p className="text-prepa-gray text-base">Conseil dans le choix de filière</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Nos résultats</h2>
+              <p className="section-subtitle">
+                Des chiffres qui parlent d'eux-mêmes
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            <AnimatedSection direction="up" delay={0.1}>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-prepa-gold mb-2">65%</div>
+                <div className="text-lg font-semibold text-prepa-blue mb-2">Taux de réussite</div>
+                <p className="text-prepa-gray text-base">Moyenne sur 5 ans</p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.2}>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-prepa-gold mb-2">300+</div>
+                <div className="text-lg font-semibold text-prepa-blue mb-2">Étudiants accompagnés</div>
+                <p className="text-prepa-gray text-base">Depuis 2018</p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.3}>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-prepa-gold mb-2">95%</div>
+                <div className="text-lg font-semibold text-prepa-blue mb-2">Satisfaction</div>
+                <p className="text-prepa-gray text-base">De nos anciens étudiants</p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={0.4}>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-prepa-gold mb-2">2</div>
+                <div className="text-lg font-semibold text-prepa-blue mb-2">Centres</div>
+                <p className="text-prepa-gray text-base">Nord et Sud de l'île</p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+*/}

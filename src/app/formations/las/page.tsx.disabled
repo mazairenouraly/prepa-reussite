@@ -1,0 +1,318 @@
+{/*import { Layout } from '@/components/layout/Layout';
+import { AnimatedSection } from '@/components/AnimatedSection';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { RendezVousButton } from '@/components/RendezVousButton';
+import { BrochureButton } from '@/components/BrochureButton';
+import {
+  Calendar, Clock, Users, CheckCircle, Target,
+  BookOpen, Award, Phone, Mail, ArrowRight
+} from 'lucide-react';
+
+export default function PrepaLASPage() {
+  return (
+    <Layout>
+      <section className="hero-gradient">
+        <div className="hero-content">
+          <div className="text-center text-white">
+            <AnimatedSection direction="up">
+              <Badge className="bg-prepa-gold text-prepa-blue mb-6">Universitaires</Badge>
+              <h1 className="hero-title mb-6">Prépa LAS</h1>
+              <p className="hero-subtitle max-w-3xl mx-auto">
+                La voie alternative vers les études de santé.
+                Optimisez votre option santé en Licence Accès Santé.
+              </p>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Qu'est-ce que la LAS ?</h2>
+              <p className="section-subtitle">
+                La Licence Accès Santé vous permet de suivre une licence classique
+                tout en préparant l'accès aux études de santé.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            <AnimatedSection direction="left" delay={0.2}>
+              <Card className="card-base h-full">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-prepa-blue mb-6">Principe de la LAS</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Double cursus</h4>
+                        <p className="text-prepa-gray text-base">Licence disciplinaire + option santé</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Seconde chance</h4>
+                        <p className="text-prepa-gray text-base">Alternative à la PASS</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Plan B intégré</h4>
+                        <p className="text-prepa-gray text-base">Diplôme de licence en cas de non-admission</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Flexibilité</h4>
+                        <p className="text-prepa-gray text-base">Tentative dès la L1, L2 ou L3</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="right" delay={0.2}>
+              <Card className="card-blue text-white h-full">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold mb-6">Licences disponibles</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold mb-2">Sciences</h4>
+                      <ul className="text-white/90 text-base space-y-1">
+                        <li>• Licence de Biologie</li>
+                        <li>• Licence de Chimie</li>
+                        <li>• Licence de Physique</li>
+                        <li>• Licence de Mathématiques</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Sciences humaines</h4>
+                      <ul className="text-white/90 text-base space-y-1">
+                        <li>• Licence de Psychologie</li>
+                        <li>• Licence STAPS</li>
+                        <li>• Licence de Droit</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Option santé</h4>
+                      <ul className="text-white/90 text-base space-y-1">
+                        <li>• Matières fondamentales de santé</li>
+                        <li>• Préparation aux épreuves orales</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-prepa-light">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Notre accompagnement LAS</h2>
+              <p className="section-subtitle">
+                Un soutien spécialisé pour réussir l'option santé
+                tout en maintenant vos résultats en licence.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <AnimatedSection direction="up" delay={0.1}>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-prepa-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Calendar className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-prepa-blue mb-2">Période</h3>
+                  <p className="text-prepa-gray">Septembre à mai</p>
+                  <p className="text-prepa-gray text-base">Selon votre candidature</p>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection direction="up" delay={0.2}>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-prepa-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Clock className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-prepa-blue mb-2">Volume</h3>
+                  <p className="text-prepa-gray">15h par semaine</p>
+                  <p className="text-prepa-gray text-base">Focus option santé</p>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection direction="up" delay={0.3}>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-prepa-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-prepa-blue mb-2">Effectif</h3>
+                  <p className="text-prepa-gray">20 étudiants maximum</p>
+                  <p className="text-prepa-gray text-base">Groupes restreints</p>
+                </div>
+              </AnimatedSection>
+            </div>
+
+            <AnimatedSection direction="up" delay={0.4}>
+              <Card className="card-base">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-prepa-blue mb-6 text-center">Programme d'accompagnement</h3>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h4 className="font-semibold text-prepa-blue mb-4">Option santé</h4>
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center p-3 bg-prepa-light rounded">
+                          <span className="text-base">Chimie générale</span>
+                          <span className="text-prepa-blue text-base">3h/sem</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-prepa-light rounded">
+                          <span className="text-base">Biologie cellulaire</span>
+                          <span className="text-prepa-blue text-base">3h/sem</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-prepa-light rounded">
+                          <span className="text-base">Physique médicale</span>
+                          <span className="text-prepa-blue text-base">2h/sem</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-prepa-blue mb-4">Préparation aux oraux</h4>
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center p-3 bg-prepa-light rounded">
+                          <span className="text-base">Communication</span>
+                          <span className="text-prepa-blue text-base">2h/sem</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-prepa-light rounded">
+                          <span className="text-base">Entretiens simulés</span>
+                          <span className="text-prepa-blue text-base">2h/sem</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-prepa-light rounded">
+                          <span className="text-base">Projet professionnel</span>
+                          <span className="text-prepa-blue text-base">3h/sem</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Pourquoi choisir la LAS ?</h2>
+              <p className="section-subtitle">
+                Les avantages de cette voie d'accès aux études de santé
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <AnimatedSection direction="left" delay={0.2}>
+              <Card className="card-base h-full">
+                <CardContent className="p-6 space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <Award className="w-6 h-6 text-prepa-gold mt-1" />
+                    <div>
+                      <h4 className="font-semibold text-prepa-blue mb-2">Sécurité du parcours</h4>
+                      <p className="text-prepa-gray text-base">
+                        Vous obtenez un diplôme de licence même si vous n'intégrez pas
+                        les études de santé, vous garantissant une poursuite d'études.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <Target className="w-6 h-6 text-prepa-gold mt-1" />
+                    <div>
+                      <h4 className="font-semibold text-prepa-blue mb-2">Moins de pression</h4>
+                      <p className="text-prepa-gray text-base">
+                        La charge de travail est mieux répartie et vous avez
+                        plusieurs chances de candidater (L1, L2, L3).
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <BookOpen className="w-6 h-6 text-prepa-gold mt-1" />
+                    <div>
+                      <h4 className="font-semibold text-prepa-blue mb-2">Diversité des profils</h4>
+                      <p className="text-prepa-gray text-base">
+                        Enrichit votre culture générale et diversifie votre approche
+                        des sciences de la santé.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="right" delay={0.2}>
+              <Card className="card-light h-full">
+                <CardContent className="p-6 space-y-4">
+                  <h4 className="font-bold text-prepa-blue text-center mb-4">Nos résultats LAS</h4>
+                  <div className="space-y-6">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-prepa-gold mb-1">35%</div>
+                      <p className="text-prepa-gray text-base">Taux de réussite LAS 2024</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-prepa-gold mb-1">85%</div>
+                      <p className="text-prepa-gray text-base">Validation de l'année de licence</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-prepa-gold mb-1">100%</div>
+                      <p className="text-prepa-gray text-base">Poursuite d'études assurée</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-prepa-light">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="text-center max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-prepa-blue mb-4">
+                La LAS vous intéresse ?
+              </h3>
+              <p className="text-prepa-gray mb-8">
+                Découvrez comment optimiser votre parcours LAS avec notre accompagnement
+                personnalisé et notre expertise des études de santé.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <RendezVousButton className="btn-primary">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Prendre rendez-vous
+                </RendezVousButton>
+                <BrochureButton variant="outline" className="btn-outline">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Demander la brochure
+                </BrochureButton>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+*/}

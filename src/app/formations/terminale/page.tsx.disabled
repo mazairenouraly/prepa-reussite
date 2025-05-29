@@ -1,0 +1,216 @@
+{/*
+import { Layout } from '@/components/layout/Layout';
+import { AnimatedSection } from '@/components/AnimatedSection';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { RendezVousButton } from '@/components/RendezVousButton';
+import { BrochureButton } from '@/components/BrochureButton';
+import {
+  Calendar, Clock, Users, CheckCircle, Target,
+  BookOpen, Award, Phone, Mail, ArrowRight
+} from 'lucide-react';
+
+export default function PrepaTerminalePage() {
+  return (
+    <Layout>
+      <section className="hero-gradient">
+        <div className="hero-content">
+          <div className="text-center text-white">
+            <AnimatedSection direction="up">
+              <Badge className="bg-prepa-gold text-prepa-blue mb-6">Lycéens</Badge>
+              <h1 className="hero-title mb-6">Prépa Terminale</h1>
+              <p className="hero-subtitle max-w-3xl mx-auto">
+                Anticipez votre réussite en PASS/LAS dès la terminale.
+                Une préparation structurée pour prendre de l'avance.
+              </p>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Programme de formation</h2>
+              <p className="section-subtitle">
+                Un programme complet et structuré pour vous préparer efficacement
+                aux exigences de la première année de médecine.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            <AnimatedSection direction="left" delay={0.2}>
+              <Card className="card-base h-full">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-prepa-blue mb-6">Objectifs pédagogiques</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Anticiper les difficultés</h4>
+                        <p className="text-prepa-gray text-base">Découvrir les matières et méthodes de la PASS/LAS</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Acquérir une méthode</h4>
+                        <p className="text-prepa-gray text-base">Techniques de travail et de mémorisation efficaces</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Prendre de l'avance</h4>
+                        <p className="text-prepa-gray text-base">Notions clés abordées en première année</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-prepa-blue">Développer la rigueur</h4>
+                        <p className="text-prepa-gray text-base">Rythme de travail et organisation personnelle</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+
+            <AnimatedSection direction="right" delay={0.2}>
+              <Card className="card-blue text-white h-full">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold mb-6">Matières enseignées</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold mb-2">Sciences fondamentales</h4>
+                      <ul className="text-white/90 text-base space-y-1">
+                        <li>• Physique - Chimie</li>
+                        <li>• Biologie cellulaire</li>
+                        <li>• Mathématiques appliquées</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Sciences humaines</h4>
+                      <ul className="text-white/90 text-base space-y-1">
+                        <li>• Introduction à la santé publique</li>
+                        <li>• Éthique médicale</li>
+                        <li>• Communication</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Méthodologie</h4>
+                      <ul className="text-white/90 text-base space-y-1">
+                        <li>• Techniques de mémorisation</li>
+                        <li>• Gestion du temps</li>
+                        <li>• Préparation aux QCM</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-prepa-light">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="section-header">
+              <h2 className="section-title">Organisation des cours</h2>
+              <p className="section-subtitle">
+                Un planning adapté à votre emploi du temps de terminale
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <AnimatedSection direction="up" delay={0.1}>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-prepa-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Calendar className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-prepa-blue mb-2">Période</h3>
+                  <p className="text-prepa-gray">Septembre à juin</p>
+                  <p className="text-prepa-gray text-base">Compatible avec le lycée</p>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection direction="up" delay={0.2}>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-prepa-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Clock className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-prepa-blue mb-2">Horaires</h3>
+                  <p className="text-prepa-gray">12h par semaine</p>
+                  <p className="text-prepa-gray text-base">Mercredi PM + Samedi matin</p>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection direction="up" delay={0.3}>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-prepa-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-prepa-blue mb-2">Effectif</h3>
+                  <p className="text-prepa-gray">25 élèves maximum</p>
+                  <p className="text-prepa-gray text-base">Suivi personnalisé</p>
+                </div>
+              </AnimatedSection>
+            </div>
+
+            <AnimatedSection direction="up" delay={0.4}>
+              <Card className="card-base">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-prepa-blue mb-6 text-center">Planning type</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 bg-prepa-light rounded-lg">
+                      <span className="font-medium text-prepa-blue">Mercredi 14h-17h</span>
+                      <span className="text-prepa-gray">Sciences + Méthodologie</span>
+                    </div>
+                    <div className="flex justify-between items-center p-4 bg-prepa-light rounded-lg">
+                      <span className="font-medium text-prepa-blue">Samedi 9h-12h</span>
+                      <span className="text-prepa-gray">TD + Évaluations</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="section-container">
+          <AnimatedSection direction="up">
+            <div className="text-center max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-prepa-blue mb-4">
+                Prêt à prendre de l'avance ?
+              </h3>
+              <p className="text-prepa-gray mb-8">
+                Rejoignez notre prépa terminale et maximisez vos chances de réussite
+                en première année de médecine.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <RendezVousButton className="btn-primary">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Prendre rendez-vous
+                </RendezVousButton>
+                <BrochureButton variant="outline" className="btn-outline">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Demander la brochure
+                </BrochureButton>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+*/}
