@@ -1,6 +1,8 @@
+# netlify.toml
 [build]
-  command = "npm run build"
-  publish = ".next"
+  command = "bun run build"
+  publish = "out"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+# Supprimez le plugin suivant si présent :
+#[[plugins]]
+#  package = "@netlify/plugin-nextjs"
