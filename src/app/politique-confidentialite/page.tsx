@@ -41,10 +41,10 @@ export default function PolitiqueConfidentialitePage() {
                     Le responsable du traitement des données personnelles est :
                   </p>
                   <div className="bg-prepa-light p-6 rounded-lg">
-                    <p><strong>Prépa Réussite SARL</strong></p>
-                    <p>123 Rue de la République, 97490 Sainte-Clotilde, La Réunion</p>
-                    <p>Email : dpo@prepa-reussite.com</p>
-                    <p>Téléphone : 0262 12 34 56</p>
+                    <p><strong>Prépa Réussite</strong></p>
+                    <p>24 Rte Philibert Tsiranana, CS 61115 97495, La Réunion (CREPS REUNION)</p>
+                    <p>Email : contact.prepareussite@gmail.com</p>
+                    <p>Téléphone : +262 692 71 30 84</p>
                   </div>
                 </div>
 
@@ -257,8 +257,8 @@ export default function PolitiqueConfidentialitePage() {
                   </p>
                   <div className="bg-prepa-light p-6 rounded-lg mb-4">
                     <p><strong>Délégué à la Protection des Données (DPO)</strong></p>
-                    <p>Email : dpo@prepa-reussite.com</p>
-                    <p>Courrier : Prépa Réussite - DPO, 123 Rue de la République, 97490 Sainte-Clotilde</p>
+                    <p>Email : contact.prepareussite@gmail.com</p>
+                    <p>Courrier : Prépa Réussite - DPO, 24 Rte Philibert Tsiranana, CS 61115 97495, La Réunion (CREPS REUNION)</p>
                   </div>
                   <p className="text-base text-prepa-gray">
                     Vous avez également le droit d'introduire une réclamation auprès de la CNIL

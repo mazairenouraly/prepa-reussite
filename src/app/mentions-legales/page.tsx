@@ -34,11 +34,10 @@ export default function MentionsLegalesPage() {
                     Le site <strong>prepa-reussite.com</strong> est édité par :
                   </p>
                   <div className="bg-prepa-light p-6 rounded-lg">
-                    <p><strong>Prépa Réussite SARL</strong></p>
-                    <p>Siège social : 123 Rue de la République, 97490 Sainte-Clotilde, La Réunion</p>
-                    <p>SIRET : 123 456 789 00010</p>
-                    <p>Téléphone : 0262 12 34 56</p>
-                    <p>Email : contact@prepa-reussite.com</p>
+                    <p><strong>Prépa Réussite</strong></p>
+                    <p>Siège social : 24 Rte Philibert Tsiranana, CS 61115 97495, La Réunion (CREPS REUNION)</p>
+                    <p>Téléphone : +262 692 71 30 84</p>
+                    <p>Email : contact.prepareussite@gmail.com</p>
                     <p>Directeur de la publication : Dr. Jean-Claude Hoarau</p>
                   </div>
                 </div>
