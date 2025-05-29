@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,6 +29,15 @@ export const Chatbot = () => {
     }
   ]);
   const [inputValue, setInputValue] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const quickQuestions = [
     "Quels sont vos tarifs ?",
@@ -210,23 +219,23 @@ export const Chatbot = () => {
   };
 
   return (
-    <div className="chatbot-container">
+    <div className="fixed bottom-4 right-4 z-[9999]">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="chatbot-popup"
+            className="absolute bottom-16 right-0 bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col z-[9999] w-[340px] md:w-[420px] h-[500px] md:h-[600px] max-w-[calc(100vw-2rem)] max-h-[calc(100vh-6rem)]"
           >
             {/* Header */}
-            <div className="flex items-center justify-between mb-4 pb-3 border-b">
+            <div className="flex items-center justify-between p-4 pb-3 border-b flex-shrink-0">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-custom-blue to-custom-rose rounded-full flex items-center justify-center">
                   <MessageCircle className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-custom-blue">Prépa Réussite</h4>
+                  <h4 className="font-semibold text-custom-blue text-base">Prépa Réussite</h4>
                   <div className="flex items-center space-x-1 text-xs text-green-600">
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <span>En ligne • Répond instantanément</span>
@@ -235,25 +244,25 @@ export const Chatbot = () => {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-custom-gray hover:text-custom-blue transition-colors"
+                className="text-custom-gray hover:text-custom-blue transition-colors p-1"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Messages */}
-            <div className="h-64 overflow-y-auto mb-4 space-y-3">
+            {/* Messages Container */}
+            <div className="flex-1 overflow-y-auto px-4 py-2 space-y-3 min-h-0">
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
+                  <div className={`max-w-[85%] px-3 py-2 rounded-lg text-sm md:text-base ${
                     message.sender === 'user'
                       ? 'bg-gradient-to-br from-custom-blue to-custom-rose text-white'
                       : 'bg-gray-100 text-custom-dark'
                   }`}>
-                    <p className="whitespace-pre-line">{message.text}</p>
+                    <p className="whitespace-pre-line leading-relaxed">{message.text}</p>
                     <div className={`text-xs mt-1 flex items-center space-x-1 ${
                       message.sender === 'user' ? 'text-blue-100' : 'text-custom-gray'
                     }`}>
@@ -263,43 +272,47 @@ export const Chatbot = () => {
                   </div>
                 </div>
               ))}
+              
+              {/* Quick Questions */}
+              {messages.length === 1 && (
+                <div className="py-2">
+                  <p className="text-xs text-custom-gray mb-2">Questions fréquentes :</p>
+                  <div className="space-y-1">
+                    {quickQuestions.map((question, index) => (
+                      <button
+                        key={`quick-${index}-${question.slice(0, 10)}`}
+                        onClick={() => handleQuickQuestion(question)}
+                        className="block w-full text-left text-xs md:text-sm text-custom-blue hover:bg-custom-background p-2 rounded transition-colors"
+                      >
+                        {question}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick Questions */}
-            {messages.length === 1 && (
-              <div className="mb-4">
-                <p className="text-xs text-custom-gray mb-2">Questions fréquentes :</p>
-                <div className="space-y-1">
-                  {quickQuestions.map((question, index) => (
-                    <button
-                      key={`quick-${index}-${question.slice(0, 10)}`}
-                      onClick={() => handleQuickQuestion(question)}
-                      className="block w-full text-left text-xs text-custom-blue hover:bg-custom-background p-2 rounded transition-colors"
-                    >
-                      {question}
-                    </button>
-                  ))}
-                </div>
+            {/* Input - Fixed at bottom */}
+            <div className="p-4 border-t bg-white rounded-b-lg flex-shrink-0">
+              <div className="flex space-x-2">
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Tapez votre message..."
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-custom-blue"
+                />
+                <Button
+                  onClick={handleSendMessage}
+                  size="sm"
+                  className="bg-gradient-to-br from-custom-blue to-custom-rose hover:from-custom-rose hover:to-custom-blue text-white px-3 py-2"
+                >
+                  <Send className="w-4 h-4" />
+                </Button>
               </div>
-            )}
-
-            {/* Input */}
-            <div className="flex space-x-2">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                placeholder="Tapez votre message..."
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-custom-blue"
-              />
-              <Button
-                onClick={handleSendMessage}
-                size="sm"
-                className="bg-gradient-to-br from-custom-blue to-custom-rose hover:from-custom-rose hover:to-custom-blue text-white"
-              >
-                <Send className="w-4 h-4" />
-              </Button>
             </div>
           </motion.div>
         )}

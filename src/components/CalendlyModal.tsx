@@ -18,11 +18,16 @@ export const CalendlyModal = ({ isOpen, onClose }: CalendlyModalProps) => {
       script.async = true;
       document.body.appendChild(script);
 
+      // Empêche le scroll du body quand la modal est ouverte
+      document.body.style.overflow = 'hidden';
+
       return () => {
         try {
           if (document.body.contains(script)) {
             document.body.removeChild(script);
           }
+          // Restaure le scroll
+          document.body.style.overflow = 'unset';
         } catch (error) {
           console.warn('Error removing Calendly script:', error);
         }
@@ -64,16 +69,16 @@ export const CalendlyModal = ({ isOpen, onClose }: CalendlyModalProps) => {
             className="fixed inset-0 bg-black/50 z-50"
           />
 
-          {/* Modal */}
+          {/* Modal - Responsive pour mobile */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="fixed inset-4 md:inset-8 bg-white rounded-lg shadow-2xl z-50 flex flex-col"
+            className="fixed inset-2 sm:inset-4 md:inset-8 lg:inset-16 bg-white rounded-lg shadow-2xl z-50 flex flex-col max-h-[calc(100vh-1rem)] overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b">
-              <h2 className="text-xl font-bold text-prepa-blue">Prendre rendez-vous</h2>
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b flex-shrink-0">
+              <h2 className="text-lg sm:text-xl font-bold text-custom-blue">Prendre rendez-vous</h2>
               <button
                 onClick={onClose}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -82,11 +87,11 @@ export const CalendlyModal = ({ isOpen, onClose }: CalendlyModalProps) => {
               </button>
             </div>
 
-            {/* Calendly Widget */}
-            <div className="flex-1 p-4">
+            {/* Calendly Widget Container */}
+            <div className="flex-1 p-2 sm:p-4 overflow-hidden">
               <div
                 id="calendly-inline-widget"
-                className="w-full h-full min-h-[600px]"
+                className="w-full h-full min-h-[400px] sm:min-h-[500px] md:min-h-[600px]"
                 data-url="https://calendly.com/contact-prepareussite"
               />
             </div>
