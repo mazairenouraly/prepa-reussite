@@ -10,7 +10,8 @@ const MAILERSEND_CONFIG = {
     brochure: process.env.MAILERSEND_BROCHURE_TEMPLATE
   },
   companyEmail: 'contact.prepareussite@gmail.com',
-  companyName: 'Prépa Réussite'
+  companyName: 'Prépa Réussite',
+  domain: process.env.MAILERSEND_DOMAIN
 };
 
 export async function POST(request: NextRequest) {
@@ -27,21 +28,22 @@ export async function POST(request: NextRequest) {
     }
 
     const payload = {
-        from: {
-            email: "MS_bRcFXT@test-ywj2lpnvjyjg7oqz.mlsender.net",
-            name: MAILERSEND_CONFIG.companyName
-        },
-        to: [
-            {
-              email: email,
-              name: name
-            }
-        ],
-        email: email,
-        subject: "Demande de brochure Prépa Réussit",
-        template_id: MAILERSEND_CONFIG.templates.brochure,
-        personalization: [
-          {
+      from: {
+        email: MAILERSEND_CONFIG.domain,
+        name: MAILERSEND_CONFIG.companyName
+      },
+      to: [
+        {
+          email: email,
+          name: name
+        }
+      ],
+      subject: "Demande de brochure Prépa Réussite",
+      template_id: MAILERSEND_CONFIG.templates.brochure,
+      personalization: [
+        {
+          email: email,
+          data: {
             subject: "Demande de brochure Prépa Réussite",
             client_name: name,
             client_email: email,
@@ -50,7 +52,8 @@ export async function POST(request: NextRequest) {
             request_date: new Date().toLocaleDateString('fr-FR'),
             request_time: new Date().toLocaleTimeString('fr-FR')
           }
-        ]
+        }
+      ]
     };
 
     const response = await fetch(`${MAILERSEND_CONFIG.apiUrl}/email`, {

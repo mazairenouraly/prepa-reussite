@@ -9,7 +9,9 @@ const MAILERSEND_CONFIG = {
   templates: {
     contact: process.env.MAILERSEND_CONTACT_TEMPLATE
   },
-  companyEmail: 'contact.prepareussite@gmail.com'
+  companyEmail: 'contact.prepareussite@gmail.com',
+  companyName: 'Prépa Réussite',
+  domain: process.env.MAILERSEND_DOMAIN
 };
 
 export async function POST(request: NextRequest) {
@@ -25,19 +27,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Préparer la requête MailerSend
     const payload = {
         from: {
-            email: "MS_bRcFXT@test-ywj2lpnvjyjg7oqz.mlsender.net",
+            email: MAILERSEND_CONFIG.domain,
             name: from_name
         },
         to: [
             {
             email: MAILERSEND_CONFIG.companyEmail,
-            name: 'Équipe Prépa Réussite'
+            name: MAILERSEND_CONFIG.companyName
             }
         ],
-        subject: subject || "Nouveau message du formulaire de contact", // ✅ sujet requis
+        subject: subject || "Nouveau message du formulaire de contact",
         template_id: MAILERSEND_CONFIG.templates.contact,
         personalization: [
             {
