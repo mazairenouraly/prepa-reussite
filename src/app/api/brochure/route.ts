@@ -37,6 +37,7 @@ export async function POST(request: NextRequest) {
               name: name
             }
         ],
+        email: email,
         subject: "Demande de brochure Prépa Réussit",
         template_id: MAILERSEND_CONFIG.templates.brochure,
         personalization: [
