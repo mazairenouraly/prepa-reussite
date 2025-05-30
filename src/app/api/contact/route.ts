@@ -7,7 +7,7 @@ const MAILERSEND_CONFIG = {
   apiToken: process.env.MAILERSEND_API_TOKEN || '',
   apiUrl: 'https://api.mailersend.com/v1',
   templates: {
-    contact: process.env.MAILERSEND_CONTACT_TEMPLATE || 'jpzkmgq8jqvg059v'
+    contact: process.env.MAILERSEND_CONTACT_TEMPLATE
   },
   companyEmail: 'contact.prepareussite@gmail.com'
 };

@@ -7,7 +7,7 @@ const MAILERSEND_CONFIG = {
   apiToken: process.env.MAILERSEND_API_TOKEN || '',
   apiUrl: 'https://api.mailersend.com/v1',
   templates: {
-    brochure: process.env.MAILERSEND_BROCHURE_TEMPLATE || 'jy7zpl99y35l5vx6'
+    brochure: process.env.MAILERSEND_BROCHURE_TEMPLATE
   },
   companyEmail: 'contact.prepareussite@gmail.com',
   companyName: 'Prépa Réussite'
