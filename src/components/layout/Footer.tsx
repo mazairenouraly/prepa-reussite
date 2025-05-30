@@ -74,20 +74,20 @@ export const Footer = () => {
               <div className="space-y-4 text-white/80 text-base font-roboto">
                 <div>
                   <p className="font-semibold text-white mb-1 font-gyst">Centre Nord :</p>
-                  <p>123 Rue de la République, 97490 Sainte-Clotilde</p>
+                  <p>24 Rte Philibert Tsiranana, CS 61115 97495, La Réunion (CREPS REUNION)</p>
                 </div>
                 <div>
                   <p className="font-semibold text-white mb-1 font-gyst">Centre Sud :</p>
-                  <p>45 Avenue des Palmiers, 97410 Saint-Pierre</p>
+                  <p>149 C Rue Marius et Ary Leblond, Saint-Pierre 97410, La Réunion (Nova assurances)</p>
                 </div>
                 <div>
                   <p className="font-semibold text-white mb-1 font-gyst">Téléphone :</p>
-                  <p>Nord : 0262 12 34 56</p>
-                  <p>Sud : 0262 98 76 54</p>
+                  <p>Nord : +262 692 71 30 84</p>
+                  <p>Sud : +262 692 71 30 84</p>
                 </div>
                 <div>
                   <p className="font-semibold text-white mb-1 font-gyst">Email :</p>
-                  <p>contact@prepa-reussite.com</p>
+                  <p>contact.prepareussite@gmail.com</p>
                 </div>
               </div>
             </div>

@@ -56,7 +56,7 @@ export const CentreSudSection = () => {
 
             <div className="flex items-center text-custom-blue text-base pt-4 font-roboto">
               <Phone className="w-5 h-5 mr-3" />
-              0262 98 76 54
+              +262 692 71 30 84
             </div>
           </CardContent>
         </Card>

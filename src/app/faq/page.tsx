@@ -273,7 +273,7 @@ export default function FAQPage() {
                       <p className="text-white/90 text-base mb-4">
                         Réponse sous 24h garantie
                       </p>
-                      <p className="text-base">contact@prepa-reussite.com</p>
+                      <p className="text-base">contact.prepareussite@gmail.com</p>
                     </div>
                   </div>
 

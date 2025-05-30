@@ -123,7 +123,7 @@ export const Chatbot = () => {
     {
       keywords: ["contact", "téléphone", "email", "joindre"],
       question: "Comment vous contacter ?",
-      answer: "Vous pouvez nous joindre :\n• Par téléphone : +262 692 71 30 84\n• Par email : contact@prepa-reussite.com\n• Horaires : Du lundi au vendredi, 8h-17h30"
+      answer: "Vous pouvez nous joindre :\n• Par téléphone : +262 692 71 30 84\n• Par email : contact.prepareussite@gmail.com\n• Horaires : Du lundi au vendredi, 8h-17h30"
     }
   ];
 
@@ -167,7 +167,7 @@ export const Chatbot = () => {
     }
 
     // Réponse par défaut
-    return "Je ne suis pas sûr de comprendre votre question. Voici ce que je peux vous aider à découvrir :\n\n• Nos formations (PASS, LAS, Terminale)\n• Les modalités d'inscription\n• Nos locaux et horaires\n• Les tarifs et facilités de paiement\n\nPour une réponse personnalisée, contactez-nous au +262 692 71 30 84 ou par email à contact@prepa-reussite.com";
+    return "Je ne suis pas sûr de comprendre votre question. Voici ce que je peux vous aider à découvrir :\n\n• Nos formations (PASS, LAS, Terminale)\n• Les modalités d'inscription\n• Nos locaux et horaires\n• Les tarifs et facilités de paiement\n\nPour une réponse personnalisée, contactez-nous au +262 692 71 30 84 ou par email à contact.prepareussite@gmail.com";
   };
 
   const handleSendMessage = () => {

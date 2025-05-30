@@ -45,11 +45,11 @@ export default function ContactPage() {
                   <div className="space-y-3 text-prepa-gray">
                     <div>
                       <p className="font-semibold">Centre Nord</p>
-                      <p>0262 12 34 56</p>
+                      <p>+262 692 71 30 84</p>
                     </div>
                     <div>
                       <p className="font-semibold">Centre Sud</p>
-                      <p>0262 98 76 54</p>
+                      <p>+262 692 71 30 84</p>
                     </div>
                     <div className="flex items-center justify-center space-x-2 text-base pt-4">
                       <Clock className="w-4 h-4" />
@@ -68,7 +68,7 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-xl font-bold text-prepa-blue mb-4">Écrivez-nous</h3>
                   <div className="space-y-3 text-prepa-gray">
-                    <p>contact@prepa-reussite.com</p>
+                    <p>contact.prepareussite@gmail.com</p>
                     <p className="text-base">Réponse garantie sous 24h</p>
                     <div className="flex items-center justify-center space-x-2 text-base pt-4">
                       <MessageCircle className="w-4 h-4" />
