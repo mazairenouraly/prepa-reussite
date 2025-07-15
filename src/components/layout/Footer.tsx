@@ -86,7 +86,7 @@ export const Footer = () => {
                     <strong>Nord :</strong> 
                     <a 
                       href="tel:+262692713084" 
-                      className="text-custom-blue hover:text-custom-rose transition-colors cursor-pointer ml-1"
+                      className="hover:text-custom-rose transition-colors cursor-pointer ml-1"
                     >
                       +262 692 71 30 84
                     </a>
@@ -95,7 +95,7 @@ export const Footer = () => {
                     <strong>Sud :</strong> 
                     <a 
                       href="tel:+262692713084" 
-                      className="text-custom-blue hover:text-custom-rose transition-colors cursor-pointer ml-1"
+                      className="hover:text-custom-rose transition-colors cursor-pointer ml-1"
                     >
                       +262 692 71 30 84
                     </a>
