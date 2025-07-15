@@ -56,7 +56,7 @@ export default function FormationsPage() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-custom-rose flex-shrink-0" />
-                    <span>Cours animés par des professeurs</span>
+                    <span>Cours animés par des formateurs</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-custom-rose flex-shrink-0" />
@@ -102,7 +102,7 @@ export default function FormationsPage() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-custom-rose flex-shrink-0" />
-                    <span>Salles en libre-service 7j/7j</span>
+                    <span>Planning hébdomadaire structuré</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-custom-rose flex-shrink-0" />
