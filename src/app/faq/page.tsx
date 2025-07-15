@@ -260,8 +260,24 @@ export default function FAQPage() {
                         Du lundi au vendredi, 8h-17h30
                       </p>
                       <div className="space-y-2 text-base">
-                        <p><strong>Nord :</strong> +262 692 71 30 84</p>
-                        <p><strong>Sud :</strong> +262 692 71 30 84</p>
+                        <p>
+                          <strong>Nord :</strong> 
+                          <a 
+                            href="tel:+262692713084" 
+                            className="hover:text-custom-blue transition-colors cursor-pointer ml-1"
+                          >
+                            +262 692 71 30 84
+                          </a>
+                        </p>
+                        <p>
+                          <strong>Sud :</strong> 
+                          <a 
+                            href="tel:+262692713084" 
+                            className="hover:text-custom-blue transition-colors cursor-pointer ml-1"
+                          >
+                            +262 692 71 30 84
+                          </a>
+                        </p>
                       </div>
                     </div>
 

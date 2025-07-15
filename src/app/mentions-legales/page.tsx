@@ -36,7 +36,15 @@ export default function MentionsLegalesPage() {
                   <div className="bg-prepa-light p-6 rounded-lg">
                     <p><strong>Prépa Réussite</strong></p>
                     <p>Siège social : 14 rue Pasteur, 97400, saint DENIS</p>
-                    <p>Téléphone : +262 692 71 30 84</p>
+                    <p>
+                      Téléphone : 
+                      <a 
+                        href="tel:+262692713084" 
+                        className="text-prepa-blue hover:underline ml-1"
+                      >
+                        +262 692 71 30 84
+                      </a>
+                    </p>
                     <p>Email : contact.prepareussite@gmail.com</p>
                     {/*
                     <p>Directeur de la publication : Dr. Jean-Claude Hoarau</p>

@@ -54,10 +54,13 @@ export const CentreSudSection = () => {
               </div>
             </div>
 
-            <div className="flex items-center text-custom-blue text-base pt-4 font-roboto">
-              <Phone className="w-5 h-5 mr-3" />
-              +262 692 71 30 84
-            </div>
+            <a 
+              href="tel:+262692713084" 
+              className="flex items-center text-custom-blue text-sm md:text-base pt-4 font-roboto hover:text-custom-rose transition-colors"
+            >
+              <Phone className="w-5 h-5 mr-3 flex-shrink-0" />
+              +262 692 71 30 84 
+            </a>
           </CardContent>
         </Card>
       </div>

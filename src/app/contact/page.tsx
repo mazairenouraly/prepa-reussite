@@ -45,11 +45,21 @@ export default function ContactPage() {
                   <div className="space-y-3 text-prepa-gray">
                     <div>
                       <p className="font-semibold">Centre Nord</p>
-                      <p>+262 692 71 30 84</p>
+                      <a 
+                        href="tel:+262692713084" 
+                        className="hover:text-prepa-blue transition-colors cursor-pointer"
+                      >
+                        +262 692 71 30 84
+                      </a>
                     </div>
                     <div>
                       <p className="font-semibold">Centre Sud</p>
-                      <p>+262 692 71 30 84</p>
+                      <a 
+                        href="tel:+262692713084" 
+                        className="hover:text-prepa-blue transition-colors cursor-pointer"
+                      >
+                        +262 692 71 30 84
+                      </a>
                     </div>
                     <div className="flex items-center justify-center space-x-2 text-base pt-4">
                       <Clock className="w-4 h-4" />

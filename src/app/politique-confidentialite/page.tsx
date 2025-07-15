@@ -44,7 +44,15 @@ export default function PolitiqueConfidentialitePage() {
                     <p><strong>Prépa Réussite</strong></p>
                     <p>24 Rte Philibert Tsiranana, CS 61115 97495, La Réunion (CREPS REUNION)</p>
                     <p>Email : contact.prepareussite@gmail.com</p>
-                    <p>Téléphone : +262 692 71 30 84</p>
+                    <p>
+                      Téléphone : 
+                      <a 
+                        href="tel:+262692713084" 
+                        className="text-prepa-blue hover:underline ml-1"
+                      >
+                        +262 692 71 30 84
+                      </a>
+                    </p>
                   </div>
                 </div>
 
