@@ -56,7 +56,7 @@ export default function Home() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <Award className="w-5 h-5 text-custom-rose flex-shrink-0" />
-                    <span className="text-base text-custom-gray font-roboto">Excellence depuis 2020</span>
+                    <span className="text-base text-custom-gray font-roboto">Excellence depuis 2015</span>
                   </div>
                 </div>
               </div>
@@ -179,9 +179,9 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <AnimatedSection direction="up" delay={0.1}>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst">3500</div>
-                <div className="text-base md:text-lg font-semibold font-roboto text-gradient-blue">étudiants accompagnés</div>
-                <div className="text-sm md:text-base text-custom-gray font-roboto">chaque année</div>
+                <div className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst">44%</div>
+                <div className="text-base md:text-lg font-semibold font-roboto text-gradient-blue">réussite aux concours de médecine</div>
+                <div className="text-sm md:text-base text-custom-gray font-roboto">(promo 2025)</div>
               </div>
             </AnimatedSection>
 

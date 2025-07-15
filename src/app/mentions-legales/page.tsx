@@ -35,10 +35,12 @@ export default function MentionsLegalesPage() {
                   </p>
                   <div className="bg-prepa-light p-6 rounded-lg">
                     <p><strong>Prépa Réussite</strong></p>
-                    <p>Siège social : 24 Rte Philibert Tsiranana, CS 61115 97495, La Réunion (CREPS REUNION)</p>
+                    <p>Siège social : 14 rue Pasteur, 97400, saint DENIS</p>
                     <p>Téléphone : +262 692 71 30 84</p>
                     <p>Email : contact.prepareussite@gmail.com</p>
+                    {/*
                     <p>Directeur de la publication : Dr. Jean-Claude Hoarau</p>
+                    */}
                   </div>
                 </div>
 

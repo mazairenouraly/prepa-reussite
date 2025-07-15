@@ -502,7 +502,7 @@ export default function FormationsPage() {
                     </tr>
                     <tr className="comparison-row">
                       <td className="comparison-cell font-semibold font-roboto text-sm md:text-base">Coût annuel</td>
-                      <td className="comparison-cell text-custom-blue font-semibold font-roboto text-sm md:text-base">Accessible - jusqu'à 4 fois moins cher</td>
+                      <td className="comparison-cell text-custom-blue font-semibold font-roboto text-sm md:text-base">Accessible - jusqu'à 2 à 3 fois moins cher</td>
                       <td className="comparison-cell text-custom-rose font-roboto text-sm md:text-base">Environ 14 000€ l'année</td>
                     </tr>
                   </tbody>
