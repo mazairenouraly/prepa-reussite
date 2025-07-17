@@ -12,6 +12,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { CentreSudSection } from "@/components/CentreSudSection";
 import { Layout } from "@/components/layout/Layout";
 import { useState } from "react";
+import ImageSwitcher from "@/components/ImageSwitcher";
 
 export default function Home() {
   const [showVideo, setShowVideo] = useState(false);
@@ -65,6 +66,7 @@ export default function Home() {
             <AnimatedSection direction="right" delay={0.3}>
               <div className="relative">
                 <div className="card-white p-6">
+                  {/*
                   {showVideo ? (
                     <div className="w-full h-80 rounded-xl overflow-hidden">
                       <iframe
@@ -93,6 +95,8 @@ export default function Home() {
                       </div>
                     </div>
                   )}
+                  */}
+                  <ImageSwitcher />
                 </div>
               </div>
             </AnimatedSection>

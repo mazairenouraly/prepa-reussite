@@ -39,8 +39,12 @@ export const Footer = () => {
               </p>
 
               <div className="flex space-x-4">
-                <Facebook className="w-6 h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
-                <Instagram className="w-6 h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
+                <a href="https://www.facebook.com/prepareussiterun" target="_blank" rel="noopener noreferrer">
+                  <Facebook className="w-6 h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
+                </a>
+                <a href="https://www.instagram.com/prepareussite974" target="_blank" rel="noopener noreferrer">
+                  <Instagram className="w-6 h-6 text-white/80 hover:text-white cursor-pointer transition-colors" />
+                </a>
               </div>
             </div>
 
@@ -114,8 +118,6 @@ export const Footer = () => {
               <Link href="/mentions-legales" className="footer-link">Mentions légales</Link>
               <span>|</span>
               <Link href="/politique-confidentialite" className="footer-link">Politique de confidentialité</Link>
-              <span>|</span>
-              <Link href="/cgv" className="footer-link">CGV</Link>
             </div>
             <p className="font-roboto">© 2025 Prépa Réussite - Tous droits réservés</p>
           </div>

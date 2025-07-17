@@ -153,7 +153,7 @@ export const BrochureButton = ({
                   <div className="flex items-center justify-between p-6 border-b">
                     <div>
                       <h2 className="text-xl font-bold text-prepa-blue">Recevoir notre brochure</h2>
-                      <p className="text-prepa-gray text-base">Via template MailerSend "brochure-template"</p>
+                      <p className="text-prepa-gray text-base">Un PDF complet vous sera envoyé par email après validation du formulaire.</p>
                     </div>
                     <button
                       onClick={() => !isLoading && setIsModalOpen(false)}
