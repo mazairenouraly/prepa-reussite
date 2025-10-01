@@ -156,7 +156,7 @@ export const BrochureSuccessButton = ({
                   {/* Header avec badge premium */}
                   <div className="flex items-center justify-between p-4 sm:p-6 border-b" style={{ background: 'linear-gradient(124deg, rgba(0, 79, 218, 0.1), rgba(209, 74, 129, 0.1))' }}>
                     <div>
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-1 sm:space-y-0 sm:space-x-2 mb-2">
+                      <div className="flex items-center space-x-2 mb-2">
                         <Badge className="text-white text-xs" style={{ background: '#d14a81' }}>
                           <Star className="w-3 h-3 mr-1" />
                           Success Story

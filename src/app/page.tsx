@@ -42,16 +42,16 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <BrochureButton className="btn-primary py-6 px-6 text-xl">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <BrochureButton className="btn-primary py-4 sm:py-6 px-4 sm:px-6 text-lg sm:text-xl w-full sm:w-auto">
                     Brochure gratuite
                   </BrochureButton>
                   <AnimatedSection direction="scale" delay={0.8}>
-                    <BrochureSuccessButton className="py-6 px-6 text-xl">
+                    <BrochureSuccessButton className="py-4 sm:py-6 px-4 sm:px-6 text-lg sm:text-xl w-full sm:w-auto">
                       🚀 De 144ème à 57ème !
                     </BrochureSuccessButton>
                   </AnimatedSection>
-                  <RendezVousButton className="btn-outline py-6 px-6 text-xl">
+                  <RendezVousButton className="btn-outline py-4 sm:py-6 px-4 sm:px-6 text-lg sm:text-xl w-full sm:w-auto">
                     <Phone className="w-4 h-4 mr-2" />
                     Rendez-vous
                   </RendezVousButton>
