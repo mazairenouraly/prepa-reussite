@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Quote, ChevronLeft, ChevronRight, Star, Sparkles } from 'lucide-react'
-import { client } from '@/lib/sanity'
 import { AnimatedSection } from '@/components/AnimatedSection'
 
 interface Testimonial {
@@ -52,22 +51,9 @@ export default function TestimonialsSection() {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const query = `
-          *[_type == "testimonial" && isActive == true] | order(order asc, isFeatured desc) {
-            _id,
-            name,
-            category,
-            content,
-            image,
-            studentName,
-            formation,
-            year,
-            isFeatured,
-            order
-          }
-        `
-        const data = await client.fetch(query)
-        setTestimonials(data)
+        const response = await fetch('/api/testimonials')
+        const data = await response.json()
+        setTestimonials(data.testimonials || [])
       } catch (error) {
         console.error('Erreur lors du chargement des témoignages:', error)
       } finally {
