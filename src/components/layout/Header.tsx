@@ -27,8 +27,7 @@ export const Header = () => {
       <BannerButton />
 
       {/* Header principal - Style Cours custom */}
-      <AnimatedSection direction="down" delay={0.1}>
-        <header className="header-main">
+      <header className="header-main animate-fade-in">
           <div className="header-content">
             <Link href="/" className="logo-container">
               <div className="w-12 h-12 flex items-center justify-center">
@@ -91,7 +90,6 @@ export const Header = () => {
             </div>
           </div>
         </header>
-      </AnimatedSection>
     </>
   );
 };

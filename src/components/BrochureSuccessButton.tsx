@@ -89,37 +89,19 @@ export const BrochureSuccessButton = ({
 
   return (
     <>
-      <motion.div
-        whileHover={{ 
-          scale: 1.02,
-          y: -2,
-        }}
-        whileTap={{ scale: 0.98 }}
-        transition={{ 
-          type: "spring", 
-          stiffness: 400, 
-          damping: 25 
-        }}
-        className="relative"
+      <Button
+        onClick={() => setIsModalOpen(true)}
+        variant={variant}
+        size={size}
+        className={`${className} success-story-btn text-white border-0 transition-all duration-300 hover:scale-105`}
       >
-        <Button
-          onClick={() => setIsModalOpen(true)}
-          variant={variant}
-          size={size}
-          className={`${className} success-story-btn text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300`}
-        >
-          {/* Contenu du bouton simplifié */}
-          <div className="relative z-10 flex items-center">
-            {children || (
-              <>
-                <TrendingUp className="w-4 h-4 mr-2 trending-icon" />
-                🚀 De 144ème à 57ème !
-              </>
-            )}
-          </div>
-
-        </Button>
-      </motion.div>
+        {children || (
+          <>
+            <TrendingUp className="w-4 h-4 mr-2 trending-icon" />
+            🚀 De 144ème à 57ème !
+          </>
+        )}
+      </Button>
 
       <AnimatePresence>
         {isModalOpen && (
@@ -138,9 +120,9 @@ export const BrochureSuccessButton = ({
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              className="fixed inset-0 flex items-center justify-center z-50 p-4"
+              className="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto"
             >
-              <div className="w-full max-w-md bg-white rounded-lg shadow-2xl">
+              <div className="w-full max-w-md bg-white rounded-lg shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
               {isSuccess ? (
                 <div className="p-8 text-center">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -172,19 +154,19 @@ export const BrochureSuccessButton = ({
               ) : (
                 <>
                   {/* Header avec badge premium */}
-                  <div className="flex items-center justify-between p-6 border-b" style={{ background: 'linear-gradient(124deg, rgba(0, 79, 218, 0.1), rgba(209, 74, 129, 0.1))' }}>
+                  <div className="flex items-center justify-between p-4 sm:p-6 border-b" style={{ background: 'linear-gradient(124deg, rgba(0, 79, 218, 0.1), rgba(209, 74, 129, 0.1))' }}>
                     <div>
-                      <div className="flex items-center space-x-2 mb-2">
-                        <Badge className="text-white" style={{ background: '#d14a81' }}>
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-1 sm:space-y-0 sm:space-x-2 mb-2">
+                        <Badge className="text-white text-xs" style={{ background: '#d14a81' }}>
                           <Star className="w-3 h-3 mr-1" />
                           Success Story
                         </Badge>
-                        <Badge className="text-white" style={{ background: 'linear-gradient(124deg, #004fda, #d14a81)' }}>
+                        <Badge className="text-white text-xs" style={{ background: 'linear-gradient(124deg, #004fda, #d14a81)' }}>
                           EXCLUSIVE
                         </Badge>
                       </div>
-                      <h2 className="text-xl font-bold text-prepa-blue">🚀 De 144ème à 57ème !</h2>
-                      <p className="text-prepa-gray text-base">
+                      <h2 className="text-lg sm:text-xl font-bold text-prepa-blue">🚀 De 144ème à 57ème !</h2>
+                      <p className="text-prepa-gray text-sm sm:text-base">
                         Découvrez comment <strong>Tasnime</strong> a réalisé cette remontée spectaculaire en PASS
                       </p>
                     </div>
@@ -198,7 +180,7 @@ export const BrochureSuccessButton = ({
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6">
                     {/* Success story highlights */}
                     <div className="mb-6 p-4 rounded-lg" style={{ background: 'linear-gradient(135deg, rgba(0, 79, 218, 0.1), rgba(209, 74, 129, 0.1))' }}>
                       <h4 className="font-semibold text-prepa-blue mb-3 flex items-center">
