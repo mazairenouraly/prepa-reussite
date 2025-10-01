@@ -52,11 +52,10 @@ export const Footer = () => {
             <div className="footer-section">
               <h4 className="footer-title">Nos prépas</h4>
               <ul className="space-y-3 text-white/80 text-base font-roboto">
-                <li><Link href="/formations" className="footer-link">Prépa Terminale</Link></li>
-                <li><Link href="/formations" className="footer-link">Prépa PASS</Link></li>
-                <li><Link href="/formations" className="footer-link">Prépa LAS</Link></li>
-                <li><Link href="/formations" className="footer-link">Comparatif des prépas</Link></li>
-                <li><Link href="/formations" className="footer-link">Documentation complète</Link></li>
+                <li><Link href="/formations/terminale" className="footer-link">Prépa Terminale</Link></li>
+                <li><Link href="/formations/pass" className="footer-link">Prépa PASS</Link></li>
+                <li><Link href="/formations/las" className="footer-link">Prépa LAS</Link></li>
+                <li><Link href="/formations/comparatif" className="footer-link">Comparatif des prépas</Link></li>
               </ul>
             </div>
 
@@ -64,8 +63,8 @@ export const Footer = () => {
             <div className="footer-section">
               <h4 className="footer-title">Informations</h4>
               <ul className="space-y-3 text-white/80 text-base font-roboto">
-                <li><Link href="/" className="footer-link">Notre vision</Link></li>
-                <li><Link href="/formations" className="footer-link">Nos parcours</Link></li>
+                <li><Link href="/notre-vision" className="footer-link">Notre vision</Link></li>
+                <li><Link href="/nos-parcours" className="footer-link">Nos parcours</Link></li>
                 <li><Link href="/blog" className="footer-link">Blog</Link></li>
                 <li><Link href="/faq" className="footer-link">FAQ</Link></li>
                 <li><Link href="/contact" className="footer-link">Contact</Link></li>

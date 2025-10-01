@@ -11,7 +11,9 @@ const MAILERSEND_CONFIG = {
   },
   companyEmail: 'contact.prepareussite@gmail.com',
   companyName: 'Prépa Réussite',
-  domain: process.env.MAILERSEND_DOMAIN
+  domain: process.env.MAILERSEND_DOMAIN,
+  adminEmail: process.env.MAILERSEND_ADMIN_EMAIL,
+  isTrial: process.env.MAILERSEND_IS_TRIAL === 'true'
 };
 
 export async function POST(request: NextRequest) {
@@ -34,7 +36,7 @@ export async function POST(request: NextRequest) {
         },
         to: [
             {
-            email: MAILERSEND_CONFIG.companyEmail,
+            email: MAILERSEND_CONFIG.isTrial ? MAILERSEND_CONFIG.adminEmail : MAILERSEND_CONFIG.companyEmail,
             name: MAILERSEND_CONFIG.companyName
             }
         ],
@@ -42,7 +44,7 @@ export async function POST(request: NextRequest) {
         template_id: MAILERSEND_CONFIG.templates.contact,
         personalization: [
             {
-            email: MAILERSEND_CONFIG.companyEmail,
+            email: MAILERSEND_CONFIG.isTrial ? MAILERSEND_CONFIG.adminEmail : MAILERSEND_CONFIG.companyEmail,
             data: {
                 client_name: from_name,
                 client_email: from_email,

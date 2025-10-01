@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Gentium+Book+Basic:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.cdnfonts.com/css/gyst');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/gyst') layer(fonts);
 
 @tailwind base;
 @tailwind components;
@@ -16,7 +16,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Gyst', 'Roboto', sans-serif;
+    font-family: 'Gyst', sans-serif;
     font-weight: 700;
     color: #131115;
   }
@@ -34,8 +34,16 @@
 
   /* Header Styles */
   .header-banner {
-    background: linear-gradient(124deg, #004fda 50%, #d14a81 100%);
-    @apply text-white text-center py-3 text-base font-medium;
+    background: linear-gradient(124deg, #004fda 50%, #d14a81 100%) !important;
+    color: white !important;
+    text-align: center !important;
+    padding: 12px 16px !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: 48px !important;
+    z-index: 1000 !important;
   }
 
   .header-main {
@@ -454,9 +462,10 @@
       @apply grid-cols-1;
     }
   }
+}
 
 
-  .reunion-map {
+.reunion-map {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -674,6 +683,56 @@
   .popup-item {
     font-size: 13px;
   }
+
+  /* Optimisations générales pour mobile */
+  .hero-content {
+    @apply py-12 px-4;
+  }
+  
+  .section-container {
+    @apply px-4;
+  }
+  
+  .card-base {
+    @apply p-4;
+  }
+
+  /* Réduire les animations sur mobile pour les performances */
+  .animate-pulse {
+    animation: none;
+  }
+  
+  .group:hover {
+    transform: none;
+  }
+
+  /* Optimiser les espacements */
+  .section-header {
+    @apply mb-8;
+  }
+
+  .feature-card {
+    @apply p-4;
+  }
+
+  /* Améliorer la lisibilité */
+  .text-lg {
+    font-size: 16px;
+  }
+
+  .text-xl {
+    font-size: 18px;
+  }
+
+  /* Optimiser les boutons */
+  .btn-primary, .btn-secondary, .btn-outline {
+    @apply py-3 px-6 text-base;
+  }
+
+  /* Améliorer la navigation */
+  .nav-link, .nav-link-active {
+    @apply text-base;
+  }
 }
 
 /* Styles pour les contrôles de zoom de Leaflet */
@@ -716,4 +775,42 @@
 .leaflet-marker-icon:hover {
   cursor: pointer !important;
 }
+
+/* Font Gyst avec fallbacks robustes */
+.font-gyst {
+  font-family: 'Gyst', sans-serif !important;
+}
+
+/* Success Story Button - Animation fluide isolée */
+.success-story-btn {
+  background: linear-gradient(124deg, #004fda, #d14a81, #004fda, #d14a81);
+  background-size: 400% 400%;
+  animation: gradientFlow 4s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  will-change: background-position;
+}
+
+@keyframes gradientFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Animation subtile pour l'icône */
+.success-story-btn .trending-icon {
+  animation: subtleBounce 2s ease-in-out infinite;
+}
+
+@keyframes subtleBounce {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg);
+  }
 }

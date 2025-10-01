@@ -24,9 +24,7 @@ export const Header = () => {
   return (
     <>
       {/* Bannière d'inscription - Style Cours custom */}
-      <AnimatedSection direction="down">
-        <BannerButton />
-      </AnimatedSection>
+      <BannerButton />
 
       {/* Header principal - Style Cours custom */}
       <AnimatedSection direction="down" delay={0.1}>

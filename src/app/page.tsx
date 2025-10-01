@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { RendezVousButton } from "@/components/RendezVousButton";
 import { BrochureButton } from "@/components/BrochureButton";
+import { BrochureSuccessButton } from "@/components/BrochureSuccessButton";
 import Link from "next/link";
 import { Play, Phone, MapPin, Mail, Users, Target, Award, Zap, BarChart3, Shield, CheckCircle } from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
@@ -13,6 +14,7 @@ import { CentreSudSection } from "@/components/CentreSudSection";
 import { Layout } from "@/components/layout/Layout";
 import { useState } from "react";
 import ImageSwitcher from "@/components/ImageSwitcher";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export default function Home() {
   const [showVideo, setShowVideo] = useState(false);
@@ -44,6 +46,11 @@ export default function Home() {
                   <BrochureButton className="btn-primary py-6 px-6 text-xl">
                     Brochure gratuite
                   </BrochureButton>
+                  <AnimatedSection direction="scale" delay={0.8}>
+                    <BrochureSuccessButton className="py-6 px-6 text-xl">
+                      🚀 De 144ème à 57ème !
+                    </BrochureSuccessButton>
+                  </AnimatedSection>
                   <RendezVousButton className="btn-outline py-6 px-6 text-xl">
                     <Phone className="w-4 h-4 mr-2" />
                     Rendez-vous
@@ -248,15 +255,15 @@ export default function Home() {
 
           {/* NOUVEAU TEXTE AJOUTÉ APRÈS LES CARDS */}
           <AnimatedSection direction="up" delay={0.5}>
-            <div className="card-base p-6 md:p-8 mt-16 max-w-4xl mx-auto custom-shadow">
+            <div className="card-base p-8 md:p-10 mt-16 max-w-4xl mx-auto custom-shadow bg-gradient-to-br from-blue-50/50 to-rose-50/50">
               <div className="text-center">
-                <h3 className="text-xl md:text-2xl font-bold text-custom-dark mb-4 font-gyst">Notre Mission</h3>
+                <h3 className="text-2xl md:text-3xl font-medium text-custom-dark mb-6 font-gyst">Notre Mission</h3>
                 <p className="text-lg md:text-xl leading-relaxed font-roboto">
-                  <span className="text-gradient-blue font-semibold">
+                  <span className="text-gradient-blue font-medium">
                     Derrière chaque inscription, il y a un rêve : devenir médecin, sage-femme, kiné, pharmacien ou dentiste.
                   </span>
                   <br/>
-                  <span className="text-custom-dark font-medium mt-2 block">
+                  <span className="text-custom-dark font-normal mt-4 block">
                     Notre mission : transformer ce rêve en méthode, en progression, en réussite.
                   </span>
                 </p>
@@ -591,6 +598,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Témoignages Section */}
+      <TestimonialsSection />
+
       {/* Contact Section - Style Cours custom */}
       <section className="py-20 bg-white overflow-hidden">
         <div className="section-container">
@@ -625,8 +635,8 @@ export default function Home() {
               <ContactForm />
             </AnimatedSection>
           </div>
-        </div>
-      </section>
-    </Layout>
+                  </div>
+        </section>
+      </Layout>
   );
 }

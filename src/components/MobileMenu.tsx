@@ -24,10 +24,10 @@ export const MobileMenu = ({ className = '' }: MobileMenuProps) => {
   const menuVariants = {
     closed: {
       opacity: 0,
-      x: '100%',
+      x: 400,
       transition: {
         duration: 0.3,
-        ease: 'easeInOut'
+        ease: 'easeInOut' as const
       }
     },
     open: {
@@ -35,7 +35,7 @@ export const MobileMenu = ({ className = '' }: MobileMenuProps) => {
       x: 0,
       transition: {
         duration: 0.3,
-        ease: 'easeInOut'
+        ease: 'easeInOut' as const
       }
     }
   };
