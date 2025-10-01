@@ -12,12 +12,36 @@ import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { ContactForm } from "@/components/ContactForm";
 import { CentreSudSection } from "@/components/CentreSudSection";
 import { Layout } from "@/components/layout/Layout";
-import { useState } from "react";
 import ImageSwitcher from "@/components/ImageSwitcher";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import { client } from "@/lib/sanity";
 
-export default function Home() {
-  const [showVideo, setShowVideo] = useState(false);
+async function getTestimonials() {
+  try {
+    const query = `
+      *[_type == "testimonial" && isActive == true] | order(order asc, isFeatured desc) {
+        _id,
+        name,
+        category,
+        content,
+        image,
+        studentName,
+        formation,
+        year,
+        isFeatured,
+        order
+      }
+    `;
+    const data = await client.fetch(query);
+    return data || [];
+  } catch (error) {
+    console.error('Erreur lors du chargement des témoignages:', error);
+    return [];
+  }
+}
+
+export default async function Home() {
+  const testimonials = await getTestimonials();
   return (
     <Layout>
       {/* Hero Section - Style Cours custom Page d'accueil */}
@@ -599,7 +623,7 @@ export default function Home() {
       </section>
 
       {/* Témoignages Section */}
-      <TestimonialsSection />
+      <TestimonialsSection initialTestimonials={testimonials} />
 
       {/* Contact Section - Style Cours custom */}
       <section className="py-20 bg-white overflow-hidden">

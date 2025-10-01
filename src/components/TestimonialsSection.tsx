@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Quote, ChevronLeft, ChevronRight, Star, Sparkles } from 'lucide-react'
-import { client } from '@/lib/sanity'
 import { AnimatedSection } from '@/components/AnimatedSection'
 
 interface Testimonial {
@@ -23,9 +22,13 @@ interface Testimonial {
   order: number
 }
 
-export default function TestimonialsSection() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
-  const [loading, setLoading] = useState(true)
+interface TestimonialsSectionProps {
+  initialTestimonials?: Testimonial[]
+}
+
+export default function TestimonialsSection({ initialTestimonials = [] }: TestimonialsSectionProps) {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials)
+  const [loading, setLoading] = useState(false)
   const [expandedTestimonials, setExpandedTestimonials] = useState<Set<string>>(new Set())
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isClient, setIsClient] = useState(false)
@@ -49,34 +52,6 @@ export default function TestimonialsSection() {
     setIsClient(true)
   }, [])
 
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const query = `
-          *[_type == "testimonial" && isActive == true] | order(order asc, isFeatured desc) {
-            _id,
-            name,
-            category,
-            content,
-            image,
-            studentName,
-            formation,
-            year,
-            isFeatured,
-            order
-          }
-        `
-        const data = await client.fetch(query)
-        setTestimonials(data)
-      } catch (error) {
-        console.error('Erreur lors du chargement des témoignages:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchTestimonials()
-  }, [])
 
   // Gestion des dimensions de la fenêtre et items par page
   useEffect(() => {
