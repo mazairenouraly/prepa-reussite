@@ -55,6 +55,7 @@ export const Footer = () => {
                 <li><Link href="/formations/terminale" className="footer-link">Prépa Terminale</Link></li>
                 <li><Link href="/formations/pass" className="footer-link">Prépa PASS</Link></li>
                 <li><Link href="/formations/las" className="footer-link">Prépa LAS</Link></li>
+                <li><Link href="/notre-philosophie" className="footer-link">Notre philosophie</Link></li>
                 <li><Link href="/formations/comparatif" className="footer-link">Comparatif des prépas</Link></li>
               </ul>
             </div>
