@@ -31,12 +31,12 @@ export async function POST(request: NextRequest) {
 
     const payload = {
         from: {
-            email: MAILERSEND_CONFIG.domain,
+            email: process.env.MAILERSEND_USERNAME,
             name: from_name
         },
         to: [
             {
-            email: MAILERSEND_CONFIG.isTrial ? MAILERSEND_CONFIG.adminEmail : MAILERSEND_CONFIG.companyEmail,
+            email: "contact.prepareussite@gmail.com",
             name: MAILERSEND_CONFIG.companyName
             }
         ],
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
         template_id: MAILERSEND_CONFIG.templates.contact,
         personalization: [
             {
-            email: MAILERSEND_CONFIG.isTrial ? MAILERSEND_CONFIG.adminEmail : MAILERSEND_CONFIG.companyEmail,
+            email: "contact.prepareussite@gmail.com",
             data: {
                 client_name: from_name,
                 client_email: from_email,
