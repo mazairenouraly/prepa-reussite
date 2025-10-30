@@ -15,40 +15,34 @@ import ImageSwitcher from "@/components/ImageSwitcher";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [isCeremonyModalOpen, setIsCeremonyModalOpen] = useState(false);
   const [isCeremonyImageOpen, setIsCeremonyImageOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  useEffect(() => {
-    const timer = window.setTimeout(() => setIsCeremonyModalOpen(true), 600);
-    return () => window.clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (isCeremonyModalOpen && videoRef.current) {
-      videoRef.current.muted = false;
-      videoRef.current.volume = 1;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // ignore autoplay rejection; user can start playback manually
-        });
-      }
+  const handleOpenCeremonyModal = useCallback(() => {
+    setIsCeremonyModalOpen(true);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
     }
-  }, [isCeremonyModalOpen]);
-
-  const handleOpenCeremonyModal = () => setIsCeremonyModalOpen(true);
-  const handleCloseCeremonyModal = () => {
+  }, [videoRef]);
+  const handleCloseCeremonyModal = useCallback(() => {
     setIsCeremonyModalOpen(false);
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
       videoRef.current.load();
     }
-  };
+  }, [videoRef]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      handleOpenCeremonyModal();
+    }, 600);
+    return () => window.clearTimeout(timer);
+  }, [handleOpenCeremonyModal]);
   const handleOpenCeremonyImage = () => setIsCeremonyImageOpen(true);
   const handleCloseCeremonyImage = () => setIsCeremonyImageOpen(false);
 
@@ -771,10 +765,10 @@ export default function Home() {
                 <video
                   ref={videoRef}
                   src="/media/ceremonie_cloture_2025.webm"
-                  autoPlay
                   playsInline
                   controls
                   loop
+                  preload="metadata"
                   poster="/media/ceremonie_cloture_2025.jpg"
                   className="relative z-10 h-[260px] w-full object-cover sm:h-[360px] md:h-[420px]"
                 >
