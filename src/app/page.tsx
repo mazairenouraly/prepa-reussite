@@ -784,7 +784,7 @@ export default function Home() {
                 <div className="pointer-events-none absolute -right-12 bottom-4 hidden h-44 w-44 rounded-full bg-custom-rose/40 blur-2xl md:block" />
                 <video
                   ref={videoRef}
-                  src="/media/ceremonie_cloture_2025.mp4"
+                  src="/media/ceremonie_cloture_2025.webm"
                   autoPlay
                   playsInline
                   controls
