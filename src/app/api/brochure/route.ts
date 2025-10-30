@@ -5,7 +5,8 @@ const MAILERSEND_CONFIG = {
   apiUrl: 'https://api.mailersend.com/v1',
   templates: {
     brochure: process.env.MAILERSEND_BROCHURE_TEMPLATE,
-    tasnime: '0p7kx4x8n2eg9yjr'
+    tasnime: '0p7kx4x8n2eg9yjr',
+    notification: process.env.MAILERSEND_CONTACT_TEMPLATE
   },
   companyEmail: 'contact.prepareussite@gmail.com',
   companyName: 'Prépa Réussite',
@@ -26,8 +27,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const templateId = brochureType === 'brochure-tasnime' 
-      ? MAILERSEND_CONFIG.templates.tasnime 
+    const templateId = brochureType === 'brochure-tasnime'
+      ? MAILERSEND_CONFIG.templates.tasnime
       : MAILERSEND_CONFIG.templates.brochure;
 
     if (!MAILERSEND_CONFIG.apiToken || !templateId || !MAILERSEND_CONFIG.domain) {
@@ -39,6 +40,13 @@ export async function POST(request: NextRequest) {
 
     const recipientEmail = email;
     const recipientName = name;
+    const brochureLabel = brochureType === 'brochure-tasnime'
+      ? 'Success Story Tasnime'
+      : 'Brochure classique';
+    const now = new Date();
+    const contactDate = now.toLocaleDateString('fr-FR');
+    const contactTime = now.toLocaleTimeString('fr-FR');
+
     const payload = {
       from: {
         email: process.env.MAILERSEND_USERNAME,
@@ -59,8 +67,8 @@ export async function POST(request: NextRequest) {
             client_email: email,
             company_name: MAILERSEND_CONFIG.companyName,
             company_email: MAILERSEND_CONFIG.companyEmail,
-            request_date: new Date().toLocaleDateString('fr-FR'),
-            request_time: new Date().toLocaleTimeString('fr-FR')
+            request_date: contactDate,
+            request_time: contactTime
           }
         }
       ]
@@ -103,11 +111,66 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-    
+
+    let notificationSent = false;
+    if (MAILERSEND_CONFIG.templates.notification && MAILERSEND_CONFIG.companyEmail) {
+      try {
+        const adminPayload = {
+          from: {
+            email: process.env.MAILERSEND_USERNAME,
+            name: MAILERSEND_CONFIG.companyName
+          },
+          to: [
+            {
+              email: MAILERSEND_CONFIG.companyEmail,
+              name: MAILERSEND_CONFIG.companyName
+            }
+          ],
+          subject: `Nouvelle demande de brochure – ${brochureLabel}`,
+          template_id: MAILERSEND_CONFIG.templates.notification,
+          personalization: [
+            {
+              email: MAILERSEND_CONFIG.companyEmail,
+              data: {
+                client_name: recipientName,
+                client_email: recipientEmail,
+                client_phone: 'Non renseigné',
+                subject: `Demande de brochure (${brochureLabel})`,
+                message: `Une nouvelle demande de brochure a été effectuée.\n\nNom : ${recipientName}\nEmail : ${recipientEmail}\nType de brochure : ${brochureLabel}`,
+                contact_date: contactDate,
+                contact_time: contactTime,
+                form_type: `Brochure (${brochureLabel})`
+              }
+            }
+          ]
+        };
+
+        const adminResponse = await fetch(`${MAILERSEND_CONFIG.apiUrl}/email`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${MAILERSEND_CONFIG.apiToken}`,
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: JSON.stringify(adminPayload)
+        });
+
+        if (!adminResponse.ok) {
+          const adminError = await adminResponse.text();
+          console.error('MailerSend Admin Notification Error:', adminResponse.status, adminError);
+        } else {
+          notificationSent = true;
+        }
+      } catch (error) {
+        console.error('Erreur lors de l\'envoi de la notification brochure:', error);
+      }
+    }
+
     return NextResponse.json({ 
       success: true, 
       message: brochureType === 'brochure-tasnime' ? 'Success Story envoyée avec succès' : 'Brochure envoyée avec succès',
-      brochureType
+      brochureType,
+      notificationSent
     });
 
   } catch (error) {

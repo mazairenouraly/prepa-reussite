@@ -6,18 +6,45 @@ import { RendezVousButton } from "@/components/RendezVousButton";
 import { BrochureButton } from "@/components/BrochureButton";
 import { BrochureSuccessButton } from "@/components/BrochureSuccessButton";
 import Link from "next/link";
-import { Play, Phone, MapPin, Mail, Users, Target, Award, Zap, BarChart3, Shield, CheckCircle } from "lucide-react";
+import { Play, Phone, MapPin, Users, Target, Award, Zap, BarChart3, Shield, CheckCircle, X } from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { ContactForm } from "@/components/ContactForm";
-import { CentreSudSection } from "@/components/CentreSudSection";
 import { Layout } from "@/components/layout/Layout";
 import ImageSwitcher from "@/components/ImageSwitcher";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import { useState } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
-  const [showVideo, setShowVideo] = useState(false);
+  const [isCeremonyModalOpen, setIsCeremonyModalOpen] = useState(false);
+  const [isCeremonyImageOpen, setIsCeremonyImageOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsCeremonyModalOpen(true), 600);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (isCeremonyModalOpen && videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.volume = 1;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // ignore autoplay rejection; user can start playback manually
+        });
+      }
+    }
+  }, [isCeremonyModalOpen]);
+
+  const handleOpenCeremonyModal = () => setIsCeremonyModalOpen(true);
+  const handleCloseCeremonyModal = () => setIsCeremonyModalOpen(false);
+  const handleOpenCeremonyImage = () => setIsCeremonyImageOpen(true);
+  const handleCloseCeremonyImage = () => setIsCeremonyImageOpen(false);
+
   return (
     <Layout>
       {/* Hero Section - Style Cours custom Page d'accueil */}
@@ -72,38 +99,51 @@ export default function Home() {
 
             <AnimatedSection direction="right" delay={0.3}>
               <div className="relative">
-                <div className="card-white p-6">
-                  {/*
-                  {showVideo ? (
-                    <div className="w-full h-80 rounded-xl overflow-hidden">
-                      <iframe
-                        src="https://www.youtube.com/embed/yWHmhMdhtsc?autoplay=1&playsinline=1&modestbranding=1&rel=0"
-                        title="Vidéo YouTube"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                        className="w-full h-full"
-                      ></iframe>
-                    </div>
-                  ) : (
-                    <div className="relative">
-                      <img
-                        src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop"
-                        alt="Étudiants en cours"
-                        className="w-full h-80 object-cover rounded-xl"
+                <div className="card-white p-6 md:p-8 space-y-6">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <h3 className="hero-subtitle-title !text-xl sm:!text-2xl lg:!text-3xl">
+                      Cérémonie de clôture 2025
+                    </h3>
+                    <Button
+                      onClick={handleOpenCeremonyModal}
+                      className="btn-primary inline-flex items-center gap-2 px-4 py-3 text-sm text-white sm:px-6 sm:py-3 sm:text-base"
+                    >
+                      <Play className="h-4 w-4 sm:h-5 sm:w-5" />
+                      Voir la vidéo
+                    </Button>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleOpenCeremonyImage}
+                    className="group relative block w-full overflow-hidden rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-custom-rose"
+                    aria-label="Afficher la photo de la cérémonie de clôture 2025 en grand"
+                  >
+                    <div className="relative h-72 w-full overflow-hidden">
+                      <Image
+                        src="/media/ceremonie_cloture_2025.jpg"
+                        alt="Cérémonie de clôture 2025 de Prépa Réussite"
+                        width={1200}
+                        height={800}
+                        priority
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <Button
-                          size="lg"
-                          onClick={() => setShowVideo(true)}
-                          className="bg-white/20 hover:bg-white/30 text-white rounded-full w-16 h-16 backdrop-blur-sm"
-                        >
-                          <Play className="w-6 h-6 ml-1" />
-                        </Button>
-                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-white/25 opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
                     </div>
-                  )}
-                  */}
-                  <ImageSwitcher />
+                    <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/85 p-4 backdrop-blur transition-all duration-500 group-hover:translate-y-1">
+                      <p className="text-xs font-semibold uppercase tracking-[0.35em] text-custom-blue/80">
+                        Prépa Réussite
+                      </p>
+                      <p className="mt-1 font-gyst text-lg font-semibold text-custom-dark">
+                        Revivez les temps forts de la promo 2025
+                      </p>
+                    </div>
+                  </button>
+
+                  <p className="text-base leading-relaxed text-custom-gray font-roboto md:text-lg">
+                    Une célébration d&apos;excellence et de partage pour honorer la réussite de nos étudiants. Découvrez l&apos;émotion de la
+                    remise des diplômes et l&apos;ambiance unique de cet événement.
+                  </p>
                 </div>
               </div>
             </AnimatedSection>
@@ -270,6 +310,63 @@ export default function Home() {
               </div>
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Moments Gallery Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50/40 to-rose-50/60 py-20">
+        <div className="absolute inset-y-0 left-[-10%] hidden w-72 rounded-full bg-custom-blue/20 blur-3xl lg:block" />
+        <div className="absolute inset-y-0 right-[-15%] hidden w-80 rounded-full bg-custom-rose/20 blur-3xl md:block" />
+        <div className="section-container relative z-10">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr,0.9fr]">
+            <AnimatedSection direction="left">
+              <div className="space-y-6">
+                <span className="inline-flex items-center gap-2 rounded-full border border-custom-blue/20 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-custom-blue">
+                  Instantané Campus
+                </span>
+                <h2 className="text-3xl font-extrabold text-custom-dark md:text-4xl lg:text-[40px] font-gyst">
+                  Plongez dans l&apos;ambiance Prépa Réussite
+                </h2>
+                <p className="text-lg leading-relaxed text-custom-gray font-roboto md:text-xl">
+                  Nos étudiants évoluent dans des espaces lumineux et pensés pour la performance. Découvrez l&apos;esprit de
+                  cohésion qui règne au quotidien dans nos centres Nord et Sud.
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[
+                    {
+                      title: "Vie de promo",
+                      description:
+                        "Des moments de partage et d’entraide qui renforcent la motivation de chacun."
+                    },
+                    {
+                      title: "Espaces inspirants",
+                      description:
+                        "Salles de travail, pauses conviviales et ambiance studieuse parfaitement équilibrée."
+                    }
+                  ].map((item) => (
+                    <div key={item.title} className="rounded-2xl border border-white/60 bg-white/80 p-5 shadow-sm backdrop-blur">
+                      <h3 className="font-gyst text-lg font-semibold text-gradient-blue">{item.title}</h3>
+                      <p className="mt-2 text-sm text-custom-gray font-roboto">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection direction="right" delay={0.15}>
+              <div className="relative mx-auto w-full max-w-md">
+                <div className="absolute inset-0 -z-10 rounded-[34px] bg-gradient-to-tr from-custom-blue/30 via-white to-custom-rose/30 blur-3xl" />
+                <div className="rounded-[28px] border border-white/60 bg-white/80 p-6 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.5)] backdrop-blur">
+                  <div className="rounded-3xl border border-white/40 bg-gradient-to-br from-blue-50 via-white to-rose-50 p-6 shadow-inner">
+                    <ImageSwitcher />
+                  </div>
+                  <p className="mt-4 text-center text-sm text-custom-gray font-roboto">
+                    Une vue immersive qui alterne entre nos deux campus.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
@@ -602,28 +699,30 @@ export default function Home() {
       <TestimonialsSection />
 
       {/* Contact Section - Style Cours custom */}
-      <section className="py-20 bg-white overflow-hidden">
+      <section className="py-20 bg-white overflow-hidden" id="contact">
         <div className="section-container">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+          <div className="grid items-start gap-8 md:grid-cols-2 md:gap-12">
             {/* Questions */}
             <AnimatedSection direction="left">
               <div className="space-y-8">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-custom-rose/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-custom-rose/10 md:h-16 md:w-16">
                     <span className="text-2xl md:text-3xl">🤔</span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-2xl md:text-3xl font-gyst text-gradient-blue">Des questions ?</h3>
+                    <h3 className="font-gyst text-2xl font-bold text-gradient-blue md:text-3xl">
+                      Des questions ?
+                    </h3>
                   </div>
                 </div>
 
-                <p className="text-custom-gray text-base md:text-lg font-roboto leading-relaxed">
+                <p className="text-custom-gray text-base leading-relaxed font-roboto md:text-lg">
                   Consultez notre page de questions fréquentes pour trouver rapidement des réponses à vos interrogations
                   sur nos formations, nos méthodes et nos tarifs.
                 </p>
 
                 <Link href="/faq">
-                  <Button className="btn-primary text-white w-full sm:w-auto">
+                  <Button className="btn-primary w-full text-white sm:w-auto">
                     Voir toutes les FAQ →
                   </Button>
                 </Link>
@@ -635,8 +734,138 @@ export default function Home() {
               <ContactForm />
             </AnimatedSection>
           </div>
-                  </div>
-        </section>
-      </Layout>
+        </div>
+      </section>
+
+      <AnimatePresence>
+        {isCeremonyModalOpen && (
+          <motion.div
+            key="ceremony-video"
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/80 px-4 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            onClick={handleCloseCeremonyModal}
+            aria-modal="true"
+            role="dialog"
+          >
+            <motion.div
+              className="relative w-full max-w-4xl overflow-hidden rounded-3xl bg-gradient-to-br from-white via-white to-custom-rose/10 shadow-[0_40px_140px_-50px_rgba(15,23,42,0.8)]"
+              initial={{ opacity: 0, y: 40, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 40, scale: 0.92 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={handleCloseCeremonyModal}
+                className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-custom-dark shadow-lg transition-all hover:bg-white"
+                aria-label="Fermer la vidéo de la cérémonie"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              <div className="space-y-4 px-6 pt-8 pb-4 text-center md:px-10 md:pt-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-custom-blue/80 md:text-sm">
+                  Instant exclusif
+                </p>
+                <h3 className="text-2xl font-extrabold text-custom-dark md:text-3xl">
+                  Cérémonie de clôture 2025 — un moment à revivre sans attendre
+                </h3>
+                <p className="text-sm text-custom-gray font-roboto md:text-base">
+                  Laissez-vous porter par l&apos;émotion de nos lauréats et activez le son depuis les contrôles si vous souhaitez profiter de l&apos;ambiance.
+                </p>
+              </div>
+
+              <div className="relative bg-black">
+                <div className="pointer-events-none absolute -left-8 top-6 hidden h-36 w-36 rounded-full bg-custom-blue/40 blur-2xl md:block" />
+                <div className="pointer-events-none absolute -right-12 bottom-4 hidden h-44 w-44 rounded-full bg-custom-rose/40 blur-2xl md:block" />
+                <video
+                  ref={videoRef}
+                  src="/media/ceremonie_cloture_2025.mp4"
+                  autoPlay
+                  playsInline
+                  controls
+                  loop
+                  poster="/media/ceremonie_cloture_2025.jpg"
+                  className="relative z-10 h-[260px] w-full object-cover sm:h-[360px] md:h-[420px]"
+                >
+                  Votre navigateur ne prend pas en charge la lecture de cette vidéo.
+                </video>
+              </div>
+
+              <div className="px-6 py-6 md:px-10 md:py-8">
+                <div className="text-center md:text-left">
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-custom-blue/80">
+                    Prépa Réussite
+                  </p>
+                  <p className="text-base text-custom-gray font-roboto md:text-lg">
+                    Une célébration de l&apos;excellence réunionnaise vers les études de santé.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+        {isCeremonyImageOpen && (
+          <motion.div
+            key="ceremony-photo"
+            className="fixed inset-0 z-[210] flex items-center justify-center bg-slate-950/85 px-4 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            onClick={handleCloseCeremonyImage}
+            aria-modal="true"
+            role="dialog"
+          >
+            <motion.div
+              className="relative w-full max-w-6xl overflow-hidden rounded-[36px] bg-gradient-to-br from-white via-white to-custom-blue/10 shadow-[0_60px_180px_-60px_rgba(15,23,42,0.85)]"
+              initial={{ opacity: 0, y: 50, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 50, scale: 0.9 }}
+              transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={handleCloseCeremonyImage}
+                className="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/85 text-custom-dark shadow-lg transition-all hover:bg-white"
+                aria-label="Fermer la photo de la cérémonie"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              <div className="space-y-3 px-8 pt-10 pb-2 text-center md:px-12">
+                <p className="text-xs font-semibold uppercase tracking-[0.45em] text-custom-blue/80 md:text-sm">
+                  Instantané d&apos;émotion
+                </p>
+                <h3 className="text-xl font-extrabold text-custom-dark md:text-2xl">
+                  Cérémonie de clôture 2025 — souvenirs en grand format
+                </h3>
+                <p className="text-sm text-custom-gray font-roboto md:text-base">
+                  Plongez dans l&apos;ambiance de la soirée et admirez les sourires de la promotion 2025.
+                </p>
+              </div>
+
+              <div className="relative mx-4 mb-10 mt-2 overflow-hidden rounded-[28px] bg-slate-900">
+                <div className="pointer-events-none absolute inset-x-8 top-6 hidden h-32 rounded-full bg-custom-rose/35 blur-3xl md:block" />
+                <div className="pointer-events-none absolute inset-x-10 bottom-6 hidden h-40 rounded-full bg-custom-blue/35 blur-3xl md:block" />
+                <Image
+                  src="/media/ceremonie_cloture_2025.jpg"
+                  alt="Cérémonie de clôture 2025 de Prépa Réussite"
+                  width={2000}
+                  height={1335}
+                  className="relative z-10 h-full w-full object-cover"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Layout>
   );
 }
