@@ -41,7 +41,14 @@ export default function Home() {
   }, [isCeremonyModalOpen]);
 
   const handleOpenCeremonyModal = () => setIsCeremonyModalOpen(true);
-  const handleCloseCeremonyModal = () => setIsCeremonyModalOpen(false);
+  const handleCloseCeremonyModal = () => {
+    setIsCeremonyModalOpen(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      videoRef.current.load();
+    }
+  };
   const handleOpenCeremonyImage = () => setIsCeremonyImageOpen(true);
   const handleCloseCeremonyImage = () => setIsCeremonyImageOpen(false);
 
@@ -750,7 +757,15 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="relative bg-black">
+              <div
+                className="relative bg-black"
+                style={{
+                  backgroundImage: "url('/media/ceremonie_cloture_2025.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat"
+                }}
+              >
                 <div className="pointer-events-none absolute -left-8 top-6 hidden h-36 w-36 rounded-full bg-custom-blue/40 blur-2xl md:block" />
                 <div className="pointer-events-none absolute -right-12 bottom-4 hidden h-44 w-44 rounded-full bg-custom-rose/40 blur-2xl md:block" />
                 <video
