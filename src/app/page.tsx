@@ -163,7 +163,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-custom-blue/90 to-blue-600/80" />
         
-        <div className="section-container relative z-10">
+        <div className="section-container">
           <div className="grid md:grid-cols-3 gap-8 md:gap-16 text-center max-w-6xl mx-auto">
             <AnimatedSection direction="up" delay={0.1}>
               <div className="space-y-4 md:space-y-6">
@@ -314,56 +314,27 @@ export default function Home() {
       </section>
 
       {/* Moments Gallery Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50/40 to-rose-50/60 py-20">
-        <div className="absolute inset-y-0 left-[-10%] hidden w-72 rounded-full bg-custom-blue/20 blur-3xl lg:block" />
-        <div className="absolute inset-y-0 right-[-15%] hidden w-80 rounded-full bg-custom-rose/20 blur-3xl md:block" />
-        <div className="section-container relative z-10">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr,0.9fr]">
+      <section className="py-20 section-bg-light overflow-hidden">
+        <div className="section-container">
+          <div className="grid gap-12 lg:grid-cols-[1.1fr,0.9fr] items-center">
             <AnimatedSection direction="left">
               <div className="space-y-6">
-                <span className="inline-flex items-center gap-2 rounded-full border border-custom-blue/20 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-custom-blue">
-                  Instantané Campus
-                </span>
-                <h2 className="text-3xl font-extrabold text-custom-dark md:text-4xl lg:text-[40px] font-gyst">
-                  Plongez dans l&apos;ambiance Prépa Réussite
+                <h2 className="section-title text-left">
+                  Réussir sans se ruiner
                 </h2>
                 <p className="text-lg leading-relaxed text-custom-gray font-roboto md:text-xl">
-                  Nos étudiants évoluent dans des espaces lumineux et pensés pour la performance. Découvrez l&apos;esprit de
-                  cohésion qui règne au quotidien dans nos centres Nord et Sud.
+                  Nos étudiants ont choisi Prépa Réussite pour réussir leur entrée en médecine sans s&apos;infliger des frais de
+                  14000 euros. Ils progressent dans un accompagnement exigeant, humain et accessible.
                 </p>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {[
-                    {
-                      title: "Vie de promo",
-                      description:
-                        "Des moments de partage et d’entraide qui renforcent la motivation de chacun."
-                    },
-                    {
-                      title: "Espaces inspirants",
-                      description:
-                        "Salles de travail, pauses conviviales et ambiance studieuse parfaitement équilibrée."
-                    }
-                  ].map((item) => (
-                    <div key={item.title} className="rounded-2xl border border-white/60 bg-white/80 p-5 shadow-sm backdrop-blur">
-                      <h3 className="font-gyst text-lg font-semibold text-gradient-blue">{item.title}</h3>
-                      <p className="mt-2 text-sm text-custom-gray font-roboto">{item.description}</p>
-                    </div>
-                  ))}
-                </div>
+                <p className="text-base text-custom-gray font-roboto">
+                  Ici, la réussite s&apos;obtient avec du travail, du soutien et une pédagogie éprouvée, pas avec des factures
+                  exorbitantes.
+                </p>
               </div>
             </AnimatedSection>
-
-            <AnimatedSection direction="right" delay={0.15}>
-              <div className="relative mx-auto w-full max-w-md">
-                <div className="absolute inset-0 -z-10 rounded-[34px] bg-gradient-to-tr from-custom-blue/30 via-white to-custom-rose/30 blur-3xl" />
-                <div className="rounded-[28px] border border-white/60 bg-white/80 p-6 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.5)] backdrop-blur">
-                  <div className="rounded-3xl border border-white/40 bg-gradient-to-br from-blue-50 via-white to-rose-50 p-6 shadow-inner">
-                    <ImageSwitcher />
-                  </div>
-                  <p className="mt-4 text-center text-sm text-custom-gray font-roboto">
-                    Une vue immersive qui alterne entre nos deux campus.
-                  </p>
-                </div>
+            <AnimatedSection direction="right" delay={0.1}>
+              <div className="flex justify-center">
+                <ImageSwitcher />
               </div>
             </AnimatedSection>
           </div>
