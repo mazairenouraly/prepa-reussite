@@ -164,7 +164,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-custom-blue/90 to-blue-600/80" />
         
-        <div className="section-container">
+        <div className="section-container relative z-10">
           <div className="grid md:grid-cols-3 gap-8 md:gap-16 text-center max-w-6xl mx-auto">
             <AnimatedSection direction="up" delay={0.1}>
               <div className="space-y-4 md:space-y-6">
@@ -231,7 +231,11 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <AnimatedSection direction="up" delay={0.1}>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst">44%</div>
+                <AnimatedCounter
+                  endValue={44}
+                  suffix="%"
+                  className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst"
+                />
                 <div className="text-base md:text-lg font-semibold font-roboto text-gradient-blue">réussite aux concours de médecine</div>
                 <div className="text-sm md:text-base text-custom-gray font-roboto">(promo 2025)</div>
               </div>
@@ -239,7 +243,10 @@ export default function Home() {
 
             <AnimatedSection direction="up" delay={0.2}>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst">2</div>
+                <AnimatedCounter
+                  endValue={2}
+                  className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst"
+                />
                 <div className="text-base md:text-lg font-semibold font-roboto text-gradient-blue">campus à La Réunion</div>
                 <div className="text-sm md:text-base text-custom-gray font-roboto">Nord et Sud</div>
               </div>
@@ -247,7 +254,11 @@ export default function Home() {
 
             <AnimatedSection direction="up" delay={0.3}>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst">97%</div>
+                <AnimatedCounter
+                  endValue={97}
+                  suffix="%"
+                  className="text-4xl md:text-5xl font-bold text-custom-blue mb-2 font-gyst"
+                />
                 <div className="text-base md:text-lg font-semibold font-roboto text-gradient-blue">de nos anciens étudiants</div>
                 <div className="text-sm md:text-base text-custom-gray font-roboto">nous recommandent</div>
               </div>
