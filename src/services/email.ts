@@ -18,7 +18,7 @@ export const sendEmail = async (data: EmailData): Promise<boolean> => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
@@ -27,20 +27,20 @@ export const sendEmail = async (data: EmailData): Promise<boolean> => {
 
     const result = await response.json();
     return result.success;
-  } catch (error) {
+  } catch {
     return false;
   }
 };
 
 // 📖 BROCHURE: contact.prepareussite@gmail.com → Client via API Route
-export const sendBrochureRequest = async (email: string, name: string): Promise<boolean> => {
+export const sendBrochureRequest = async (email: string, name: string, phone: string): Promise<boolean> => {
   try {
     const response = await fetch('/api/brochure', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, name, brochureType: 'brochure-default' })
+      body: JSON.stringify({ email, name, phone, brochureType: 'brochure-default' }),
     });
 
     if (!response.ok) {
@@ -49,20 +49,20 @@ export const sendBrochureRequest = async (email: string, name: string): Promise<
 
     const result = await response.json();
     return result.success;
-  } catch (error) {
+  } catch {
     return false;
   }
 };
 
 // 🚀 SUCCESS STORY: contact.prepareussite@gmail.com → Client via API Route
-export const sendSuccessStoryRequest = async (email: string, name: string): Promise<boolean> => {
+export const sendSuccessStoryRequest = async (email: string, name: string, phone: string): Promise<boolean> => {
   try {
     const response = await fetch('/api/brochure', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, name, brochureType: 'brochure-tasnime' })
+      body: JSON.stringify({ email, name, phone, brochureType: 'brochure-tasnime' }),
     });
 
     if (!response.ok) {
@@ -71,17 +71,15 @@ export const sendSuccessStoryRequest = async (email: string, name: string): Prom
 
     const result = await response.json();
     return result.success;
-  } catch (error) {
+  } catch {
     return false;
   }
 };
 
-// Service principal
 export const EmailService = {
-  sendEmail,              // Contact: Client → Entreprise
-  sendBrochureRequest,    // Brochure: Entreprise → Client
-  sendSuccessStoryRequest // Success Story: Entreprise → Client
+  sendEmail,
+  sendBrochureRequest,
+  sendSuccessStoryRequest,
 };
 
-// Export par défaut
 export default EmailService;

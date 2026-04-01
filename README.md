@@ -31,13 +31,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
 
 ## Dependences Infra
 
 node v22.14.0 (nvm install v22.14.0 && nvm use v22.14.0)
 npm v10.9.2
 bun v1.2.8
+
+## Email Gmail SMTP
+
+Le projet utilise maintenant Gmail SMTP cote serveur pour les formulaires de contact et l'envoi des brochures.
+
+Variables a definir dans `.env.local` :
+
+```bash
+GMAIL_USER=votre-compte@gmail.com
+GMAIL_APP_PASSWORD=mot-de-passe-application-gmail
+EMAIL_FROM_NAME=Prepa Reussite
+CONTACT_RECIPIENT_EMAIL=votre-compte@gmail.com
+```
+
+Important : utilisez un mot de passe d'application Gmail, pas le mot de passe normal du compte.

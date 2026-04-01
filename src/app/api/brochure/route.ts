@@ -1,179 +1,193 @@
 import { NextRequest, NextResponse } from 'next/server';
+import {
+  escapeHtml,
+  getContactRecipient,
+  getMissingMailerEnv,
+  getPublicPdfAttachment,
+  isMailerConfigured,
+  renderEmailLayout,
+  renderParagraphs,
+  sendMail,
+} from '@/lib/mailer';
 
-const MAILERSEND_CONFIG = {
-  apiToken: process.env.MAILERSEND_API_TOKEN || '',
-  apiUrl: 'https://api.mailersend.com/v1',
-  templates: {
-    brochure: process.env.MAILERSEND_BROCHURE_TEMPLATE,
-    tasnime: '0p7kx4x8n2eg9yjr',
-    notification: process.env.MAILERSEND_CONTACT_TEMPLATE
+export const runtime = 'nodejs';
+
+const BROCHURES = {
+  'brochure-default': {
+    label: 'Brochure classique',
+    subject: 'Votre nouvelle brochure inspirante est arrivée !',
+    fileName: 'brochure.pdf',
+    attachmentName: 'Prepa-Reussite-Brochure.pdf',
+    eyebrow: 'Brochure Prépa Réussite',
+    title: 'Votre nouvelle brochure inspirante est arrivée !',
+    paragraphs: [
+      'Bonjour {{name}},',
+      'Nous sommes heureux de partager avec vous la nouvelle brochure Prépa Réussite, qui met en lumière le parcours de Rayane, étudiant en médecine.',
+      'Après son bac, Rayane était face à de nombreuses incertitudes liées aux réformes PASS et LAS. Grâce à Prépa Réussite, il a pu structurer ses objectifs, acquérir une méthode de travail solide et progresser rapidement, tout en bénéficiant d’un accompagnement sérieux et accessible.',
+      'Son témoignage est une véritable source d’inspiration pour tous les étudiants qui veulent réussir leurs études de santé, sans se laisser décourager par les obstacles du début.',
+      'Nous espérons que ce récit vous motivera dans votre propre parcours.',
+      'N’hésitez pas à nous contacter ou à prendre rendez-vous avec un conseiller si vous avez des questions.',
+      'Bien cordialement,',
+      'L’équipe Prépa Réussite',
+    ],
   },
-  companyEmail: 'contact.prepareussite@gmail.com',
-  companyName: 'Prépa Réussite',
-  domain: 'dnvo4d9wrq3g5r86',
-  adminEmail: process.env.MAILERSEND_ADMIN_EMAIL,
-  isTrial: process.env.MAILERSEND_IS_TRIAL === 'true'
+  'brochure-tasnime': {
+    label: 'Success Story Tasnime',
+    subject: 'Découvrez le témoignage inspirant de Tasnime avec Prépa Réussite !',
+    fileName: 'brochure-tasnime.pdf',
+    attachmentName: 'Prepa-Reussite-Success-Story-Tasnime.pdf',
+    eyebrow: 'Success Story Exclusive',
+    title: 'Découvrez le témoignage inspirant de Tasnime avec Prépa Réussite !',
+    paragraphs: [
+      'Bonjour {{name}},',
+      'Nous sommes heureux de partager avec vous une nouvelle brochure exclusive de Prépa Réussite.',
+      'Vous y découvrirez le parcours de Tasnime, passée de la 144ᵉ place au premier semestre à la 57ᵉ place en médecine.',
+      'Son témoignage est une véritable preuve qu’avec discipline, méthode et accompagnement, tout reste possible, même après un début difficile.',
+      'Nous espérons que son expérience vous inspirera et renforcera votre motivation dans votre propre parcours.',
+      'N’hésitez pas à nous contacter ou à prendre rendez-vous avec un conseiller pour en savoir plus sur nos méthodes et nos accompagnements.',
+      'Bien cordialement,',
+      'L’équipe Prépa Réussite',
+    ],
+  },
 };
+
+function personalizeParagraphs(paragraphs: string[], name: string) {
+  return paragraphs.map((paragraph) => paragraph.replaceAll('{{name}}', name));
+}
+
+function renderNotificationHtml(
+  recipientName: string,
+  recipientEmail: string,
+  recipientPhone: string,
+  brochureLabel: string,
+  contactDate: string,
+  contactTime: string
+) {
+  return renderEmailLayout({
+    eyebrow: 'Demande reçue',
+    title: `Nouvelle demande de brochure : ${brochureLabel}`,
+    contentHtml: `
+      <p style="margin: 0 0 18px; font-size: 16px; line-height: 1.75; color: #24364d;">
+        Une nouvelle demande vient d'être envoyée depuis le site Prépa Réussite.
+      </p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse; background: #f8fbff; border-radius: 18px; margin-bottom: 12px;">
+        <tr>
+          <td style="padding: 10px 0; width: 130px; font-size: 14px; font-weight: 700; color: #004fda;">Nom</td>
+          <td style="padding: 10px 0; font-size: 14px; color: #24364d;">${escapeHtml(recipientName)}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; width: 130px; font-size: 14px; font-weight: 700; color: #004fda;">Email</td>
+          <td style="padding: 10px 0; font-size: 14px; color: #24364d;">${escapeHtml(recipientEmail)}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; width: 130px; font-size: 14px; font-weight: 700; color: #004fda;">Téléphone</td>
+          <td style="padding: 10px 0; font-size: 14px; color: #24364d;">${escapeHtml(recipientPhone)}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; width: 130px; font-size: 14px; font-weight: 700; color: #004fda;">Type</td>
+          <td style="padding: 10px 0; font-size: 14px; color: #24364d;">${escapeHtml(brochureLabel)}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; width: 130px; font-size: 14px; font-weight: 700; color: #004fda;">Date</td>
+          <td style="padding: 10px 0; font-size: 14px; color: #24364d;">${contactDate}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; width: 130px; font-size: 14px; font-weight: 700; color: #004fda;">Heure</td>
+          <td style="padding: 10px 0; font-size: 14px; color: #24364d;">${contactTime}</td>
+        </tr>
+      </table>
+    `,
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, name, brochureType = 'brochure-default' } = body;
+    const { email, name, phone, brochureType = 'brochure-default' } = body;
 
-    if (!email || !name) {
+    if (!email || !name || !phone) {
       return NextResponse.json(
-        { error: 'Email et nom requis' },
+        { error: 'Email, nom et numéro requis' },
         { status: 400 }
       );
     }
 
-    const templateId = brochureType === 'brochure-tasnime'
-      ? MAILERSEND_CONFIG.templates.tasnime
-      : MAILERSEND_CONFIG.templates.brochure;
-
-    if (!MAILERSEND_CONFIG.apiToken || !templateId || !MAILERSEND_CONFIG.domain) {
+    if (!isMailerConfigured()) {
       return NextResponse.json(
-        { error: 'Configuration MailerSend incomplète' },
-        { status: 500 }
-      );
-    }
-
-    const recipientEmail = email;
-    const recipientName = name;
-    const brochureLabel = brochureType === 'brochure-tasnime'
-      ? 'Success Story Tasnime'
-      : 'Brochure classique';
-    const now = new Date();
-    const contactDate = now.toLocaleDateString('fr-FR');
-    const contactTime = now.toLocaleTimeString('fr-FR');
-
-    const payload = {
-      from: {
-        email: process.env.MAILERSEND_USERNAME,
-        name: MAILERSEND_CONFIG.companyName
-      },
-      to: [
         {
-          email: recipientEmail
-        }
-      ],
-      subject: brochureType === 'brochure-tasnime' ? "🚀 Success Story : De 144ème à 57ème !" : "📚 Votre brochure Prépa Réussite",
-      template_id: templateId,
-      personalization: [
-        {
-          email: recipientEmail,
-          data: {
-            client_name: name,
-            client_email: email,
-            company_name: MAILERSEND_CONFIG.companyName,
-            company_email: MAILERSEND_CONFIG.companyEmail,
-            request_date: contactDate,
-            request_time: contactTime
-          }
-        }
-      ]
-    };
-
-
-    const response = await fetch(`${MAILERSEND_CONFIG.apiUrl}/email`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${MAILERSEND_CONFIG.apiToken}`,
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-      const errorMessage = await response.text();
-      console.error('MailerSend API Error:', response.status, errorMessage);
-      console.error('Payload sent:', JSON.stringify(payload, null, 2));
-      console.error('Config used:', {
-        domain: MAILERSEND_CONFIG.domain,
-        apiToken: MAILERSEND_CONFIG.apiToken ? 'SET' : 'MISSING',
-        templateId,
-        isTrial: MAILERSEND_CONFIG.isTrial,
-        adminEmail: MAILERSEND_CONFIG.adminEmail
-      });
-
-      return NextResponse.json(
-        { 
-          error: 'Erreur lors de l\'envoi de l\'email', 
-          details: errorMessage,
-          status: response.status,
-          config: {
-            domain: MAILERSEND_CONFIG.domain,
-            templateId,
-            isTrial: MAILERSEND_CONFIG.isTrial
-          }
+          error: 'Configuration Gmail incomplète',
+          missing: getMissingMailerEnv(),
         },
         { status: 500 }
       );
     }
 
-    let notificationSent = false;
-    if (MAILERSEND_CONFIG.templates.notification && MAILERSEND_CONFIG.companyEmail) {
-      try {
-        const adminPayload = {
-          from: {
-            email: process.env.MAILERSEND_USERNAME,
-            name: MAILERSEND_CONFIG.companyName
-          },
-          to: [
-            {
-              email: MAILERSEND_CONFIG.companyEmail,
-              name: MAILERSEND_CONFIG.companyName
-            }
-          ],
-          subject: `Nouvelle demande de brochure – ${brochureLabel}`,
-          template_id: MAILERSEND_CONFIG.templates.notification,
-          personalization: [
-            {
-              email: MAILERSEND_CONFIG.companyEmail,
-              data: {
-                client_name: recipientName,
-                client_email: recipientEmail,
-                client_phone: 'Non renseigné',
-                subject: `Demande de brochure (${brochureLabel})`,
-                message: `Une nouvelle demande de brochure a été effectuée.\n\nNom : ${recipientName}\nEmail : ${recipientEmail}\nType de brochure : ${brochureLabel}`,
-                contact_date: contactDate,
-                contact_time: contactTime,
-                form_type: `Brochure (${brochureLabel})`
-              }
-            }
-          ]
-        };
+    const brochure = BROCHURES[brochureType as keyof typeof BROCHURES] || BROCHURES['brochure-default'];
+    const recipientEmail = email;
+    const recipientName = name;
+    const recipientPhone = phone;
+    const brochureLabel = brochure.label;
+    const now = new Date();
+    const contactDate = now.toLocaleDateString('fr-FR');
+    const contactTime = now.toLocaleTimeString('fr-FR');
+    const recipient = getContactRecipient();
+    const personalizedParagraphs = personalizeParagraphs(brochure.paragraphs, recipientName);
 
-        const adminResponse = await fetch(`${MAILERSEND_CONFIG.apiUrl}/email`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${MAILERSEND_CONFIG.apiToken}`,
-            'X-Requested-With': 'XMLHttpRequest'
-          },
-          body: JSON.stringify(adminPayload)
-        });
+    void (async () => {
+      const attachment = await getPublicPdfAttachment(brochure.fileName, brochure.attachmentName);
 
-        if (!adminResponse.ok) {
-          const adminError = await adminResponse.text();
-          console.error('MailerSend Admin Notification Error:', adminResponse.status, adminError);
-        } else {
-          notificationSent = true;
-        }
-      } catch (error) {
-        console.error('Erreur lors de l\'envoi de la notification brochure:', error);
-      }
-    }
-
-    return NextResponse.json({ 
-      success: true, 
-      message: brochureType === 'brochure-tasnime' ? 'Success Story envoyée avec succès' : 'Brochure envoyée avec succès',
-      brochureType,
-      notificationSent
+      await sendMail({
+        to: recipientEmail,
+        replyTo: recipient,
+        subject: brochure.subject,
+        text: personalizedParagraphs.join('\n\n'),
+        html: renderEmailLayout({
+          eyebrow: brochure.eyebrow,
+          title: brochure.title,
+          contentHtml: renderParagraphs(personalizedParagraphs),
+          footerNote: 'Votre document est joint à cet email au format PDF.',
+        }),
+        attachments: [attachment],
+      });
+    })().catch((error) => {
+      console.error('Brochure email error:', error);
     });
 
+    void sendMail({
+      to: recipient,
+      replyTo: recipientEmail,
+      subject: `Nouvelle demande de brochure - ${brochureLabel}`,
+      text: [
+        'Une nouvelle demande de brochure a été effectuée.',
+        '',
+        `Nom: ${recipientName}`,
+        `Email: ${recipientEmail}`,
+        `Téléphone: ${recipientPhone}`,
+        `Type: ${brochureLabel}`,
+        `Date: ${contactDate}`,
+        `Heure: ${contactTime}`,
+      ].join('\n'),
+      html: renderNotificationHtml(
+        recipientName,
+        recipientEmail,
+        recipientPhone,
+        brochureLabel,
+        contactDate,
+        contactTime
+      ),
+    }).catch((error) => {
+      console.error('Brochure notification error:', error);
+    });
+
+    return NextResponse.json({
+      success: true,
+      message: brochureType === 'brochure-tasnime' ? 'Success Story envoyée avec succès' : 'Brochure envoyée avec succès',
+      brochureType,
+      notificationQueued: true,
+      deliveryQueued: true,
+    });
   } catch (error) {
+    console.error('Brochure email error:', error);
     return NextResponse.json(
       { error: 'Erreur serveur' },
       { status: 500 }
