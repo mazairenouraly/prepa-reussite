@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { after, NextRequest, NextResponse } from 'next/server';
 import {
   escapeHtml,
   getContactRecipient,
@@ -133,50 +133,59 @@ export async function POST(request: NextRequest) {
     const recipient = getContactRecipient();
     const personalizedParagraphs = personalizeParagraphs(brochure.paragraphs, recipientName);
 
-    void (async () => {
-      const attachment = await getPublicPdfAttachment(brochure.fileName, brochure.attachmentName);
+    after(async () => {
+      const attachmentPromise = getPublicPdfAttachment(brochure.fileName, brochure.attachmentName);
 
-      await sendMail({
-        to: recipientEmail,
-        replyTo: recipient,
-        subject: brochure.subject,
-        text: personalizedParagraphs.join('\n\n'),
-        html: renderEmailLayout({
-          eyebrow: brochure.eyebrow,
-          title: brochure.title,
-          contentHtml: renderParagraphs(personalizedParagraphs),
-          footerNote: 'Votre document est joint à cet email au format PDF.',
+      const [deliveryResult, notificationResult] = await Promise.allSettled([
+        (async () => {
+          const attachment = await attachmentPromise;
+
+          return sendMail({
+            to: recipientEmail,
+            replyTo: recipient,
+            subject: brochure.subject,
+            text: personalizedParagraphs.join('\n\n'),
+            html: renderEmailLayout({
+              eyebrow: brochure.eyebrow,
+              title: brochure.title,
+              contentHtml: renderParagraphs(personalizedParagraphs),
+              footerNote: 'Votre document est joint à cet email au format PDF.',
+            }),
+            attachments: [attachment],
+          });
+        })(),
+        sendMail({
+          to: recipient,
+          replyTo: recipientEmail,
+          subject: `Nouvelle demande de brochure - ${brochureLabel}`,
+          text: [
+            'Une nouvelle demande de brochure a été effectuée.',
+            '',
+            `Nom: ${recipientName}`,
+            `Email: ${recipientEmail}`,
+            `Téléphone: ${recipientPhone}`,
+            `Type: ${brochureLabel}`,
+            `Date: ${contactDate}`,
+            `Heure: ${contactTime}`,
+          ].join('\n'),
+          html: renderNotificationHtml(
+            recipientName,
+            recipientEmail,
+            recipientPhone,
+            brochureLabel,
+            contactDate,
+            contactTime
+          ),
         }),
-        attachments: [attachment],
-      });
-    })().catch((error) => {
-      console.error('Brochure email error:', error);
-    });
+      ]);
 
-    void sendMail({
-      to: recipient,
-      replyTo: recipientEmail,
-      subject: `Nouvelle demande de brochure - ${brochureLabel}`,
-      text: [
-        'Une nouvelle demande de brochure a été effectuée.',
-        '',
-        `Nom: ${recipientName}`,
-        `Email: ${recipientEmail}`,
-        `Téléphone: ${recipientPhone}`,
-        `Type: ${brochureLabel}`,
-        `Date: ${contactDate}`,
-        `Heure: ${contactTime}`,
-      ].join('\n'),
-      html: renderNotificationHtml(
-        recipientName,
-        recipientEmail,
-        recipientPhone,
-        brochureLabel,
-        contactDate,
-        contactTime
-      ),
-    }).catch((error) => {
-      console.error('Brochure notification error:', error);
+      if (deliveryResult.status === 'rejected') {
+        console.error('Brochure email error:', deliveryResult.reason);
+      }
+
+      if (notificationResult.status === 'rejected') {
+        console.error('Brochure notification error:', notificationResult.reason);
+      }
     });
 
     return NextResponse.json({
